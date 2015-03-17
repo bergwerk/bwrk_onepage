@@ -1,0 +1,16 @@
+config.tx_extbase {
+    persistence{
+        classes {
+            BERGWERK\BwrkOnepage\Domain\Model\Content {
+                mapping {
+                    tableName = tt_content
+                    columns {
+                        uid.mapOnProperty = uid
+                        pid.mapOnProperty = pid
+                        colPos.mapOnProperty = colPos
+                    }
+                }
+            }
+        }
+    }
+}

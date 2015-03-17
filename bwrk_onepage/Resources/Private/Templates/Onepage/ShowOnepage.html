@@ -1,0 +1,18 @@
+<f:layout name="Default"/>
+
+<f:section name="main">
+    <f:flashMessages renderMode="div"/>
+
+    <main role="main">
+        <f:for each="{pages}" as="page">
+
+            <section id="bwrk_onepage_{page.id}">
+                <f:for each="{page.contentElements}" as="contentElement">
+                    <f:cObject typoscriptObjectPath="plugin.tx_bwrkonepage.contentobject" data="{contentElement}"/>
+                </f:for>
+            </section>
+
+        </f:for>
+    </main>
+
+</f:section>

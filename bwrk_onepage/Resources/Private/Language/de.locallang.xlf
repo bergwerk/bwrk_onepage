@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2014-10-01T00:00:00Z" product-name="bwrk_onepage">
+        <header/>
+        <body>
+            <trans-unit id="bwrk_onepage.settings" xml:space="preserve">
+				<source>Config</source>
+                <target>Einstellungen</target>
+			</trans-unit>
+			<trans-unit id="bwrk_onepage.settings.pages" xml:space="preserve">
+				<source>Pages</source>
+                <target>Seiten</target>
+			</trans-unit>
+        </body>
+    </file>
+</xliff>
