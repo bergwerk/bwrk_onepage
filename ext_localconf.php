@@ -17,6 +17,6 @@ if (!defined('TYPO3_MODE'))
     )
 );
 
-$GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects']['TYPO3\\CMS\\Frontend\\ContentObject\\Menu\\TextMenuContentObject'] = array(
-    'className' => 'BERGWERK\\BwrkOnepage\\Typo3Overrides\\TextMenuContentObject'
-);
+//$GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects']['TYPO3\\CMS\\Frontend\\ContentObject\\Menu\\TextMenuContentObject'] = array(
+//    'className' => 'BERGWERK\\BwrkOnepage\\Typo3Overrides\\TextMenuContentObject'
+//);

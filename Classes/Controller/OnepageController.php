@@ -93,32 +93,4 @@ class OnepageController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             }
         }
     }
-
-//    public function showOnepageAction()
-//    {
-//        $settings = $this->settings;
-//        $pages = $settings['pages'];
-//        $pagesArr = array();
-//
-//        $pageIds = explode(',', $pages);
-//        foreach($pageIds as $pageId)
-//        {
-//            $contentArr = array();
-//
-//            $contentElements = $this->contentRepository->findByPid($pageId);
-//
-//            foreach($contentElements as $contentElement)
-//            {
-//                if($contentElement->getColPos() == "0")
-//                {
-//                    $contentArr[] = $contentElement->getUid();
-//                }
-//            }
-//            $pagesArr[] = array(
-//                'id' => $pageId,
-//                'contentElements' => $contentArr
-//            );
-//        }
-//        $this->view->assign('pages', $pagesArr);
-//    }
 }

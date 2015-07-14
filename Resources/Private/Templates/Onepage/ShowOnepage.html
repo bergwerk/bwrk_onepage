@@ -15,26 +15,4 @@
             </div>
         </section>
     </f:for>
-<f:comment>
-    <div class="tx-bwrk-onepage">
-        <div class="panel-group" id="bwrk_accordion_{cid}" role="tablist" aria-multiselectable="true">
-            <f:for each="{fullArray}" as="item" iteration="itemIteration">
-                <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="bwrk_accordion_heading_{item.pid}">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#bwrk_accordion_{cid}" href="#bwrk_accordion_collapse_{item.pid}" aria-expanded="{f:if(condition: firstActive, then: '{f:if(condition: itemIteration.isFirst, then: \'TRUE\', else: \'FALSE\')}')}" aria-controls="bwrk_accordion_collapse_{item.pid}">{item.title}</a>
-                        </h4>
-                    </div>
-                    <div id="bwrk_accordion_collapse_{item.pid}" class="panel-collapse collapse {f:if(condition: firstActive, then: '{f:if(condition: itemIteration.isFirst, then: \'in\')}')}" role="tabpanel" aria-labelledby="bwrk_accordion_heading_{item.pid}">
-                        <div class="panel-body">
-                            <f:for each="{item.accordion}" as="accordionItem" iteration="accordionIteration">
-                                <bwrk:content uid="{accordionItem.uid}"/>
-                            </f:for>
-                        </div>
-                    </div>
-                </div>
-            </f:for>
-        </div>
-    </div>
-</f:comment>
 </f:section>
