@@ -1,18 +1,40 @@
-<f:layout name="Default"/>
+{namespace bwrk=BERGWERK\BwrkOnepage\ViewHelpers}
+
+<f:layout name="Default" />
 
 <f:section name="main">
-    <f:flashMessages renderMode="div"/>
+    <f:flashMessages renderMode="div" />
 
-    <main role="main">
-        <f:for each="{pages}" as="page">
-
-            <section id="bwrk_onepage_{page.id}">
+    <f:for each="{fullArray}" as="page">
+        <section>
+            <h1>{page.title}</h1>
+            <div class="section-content">
                 <f:for each="{page.contentElements}" as="contentElement">
-                    <f:cObject typoscriptObjectPath="plugin.tx_bwrkonepage.contentobject" data="{contentElement}"/>
+                    <bwrk:content uid="{contentElement.uid}"/>
                 </f:for>
-            </section>
-
-        </f:for>
-    </main>
-
+            </div>
+        </section>
+    </f:for>
+<f:comment>
+    <div class="tx-bwrk-onepage">
+        <div class="panel-group" id="bwrk_accordion_{cid}" role="tablist" aria-multiselectable="true">
+            <f:for each="{fullArray}" as="item" iteration="itemIteration">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="bwrk_accordion_heading_{item.pid}">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#bwrk_accordion_{cid}" href="#bwrk_accordion_collapse_{item.pid}" aria-expanded="{f:if(condition: firstActive, then: '{f:if(condition: itemIteration.isFirst, then: \'TRUE\', else: \'FALSE\')}')}" aria-controls="bwrk_accordion_collapse_{item.pid}">{item.title}</a>
+                        </h4>
+                    </div>
+                    <div id="bwrk_accordion_collapse_{item.pid}" class="panel-collapse collapse {f:if(condition: firstActive, then: '{f:if(condition: itemIteration.isFirst, then: \'in\')}')}" role="tabpanel" aria-labelledby="bwrk_accordion_heading_{item.pid}">
+                        <div class="panel-body">
+                            <f:for each="{item.accordion}" as="accordionItem" iteration="accordionIteration">
+                                <bwrk:content uid="{accordionItem.uid}"/>
+                            </f:for>
+                        </div>
+                    </div>
+                </div>
+            </f:for>
+        </div>
+    </div>
+</f:comment>
 </f:section>

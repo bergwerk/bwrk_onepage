@@ -4,11 +4,11 @@ config.tx_extbase {
             BERGWERK\BwrkOnepage\Domain\Model\Content {
                 mapping {
                     tableName = tt_content
-                    columns {
-                        uid.mapOnProperty = uid
-                        pid.mapOnProperty = pid
-                        colPos.mapOnProperty = colPos
-                    }
+                }
+            }
+            BERGWERK\BwrkOnepage\Domain\Model\Pages {
+                mapping {
+                    tableName = pages
                 }
             }
         }

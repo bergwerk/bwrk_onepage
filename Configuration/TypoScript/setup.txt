@@ -1,14 +1,14 @@
-plugin.tx_bwrkonepage {
-    contentobject = COA
-    contentobject {
-        10 = RECORDS
-        10 {
-            source.current = 1
-            tables = tt_content
-            dontCheckPid = 1
-            conf.tt_content < tt_content
-        }
-    }
-}
+#plugin.tx_bwrkonepage {
+#   contentobject = COA
+#    contentobject {
+#        10 = RECORDS
+#        10 {
+#            source.current = 1
+#            tables = tt_content
+#            dontCheckPid = 1
+#            conf.tt_content < tt_content
+#        }
+#    }
+#}
 
 page.includeJSFooter.bwrk_onepage = EXT:bwrk_onepage/Resources/Public/Js/bwrkOnepage.js

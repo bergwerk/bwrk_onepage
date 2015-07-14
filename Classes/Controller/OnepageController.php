@@ -38,31 +38,87 @@ class OnepageController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      */
     protected $contentRepository;
 
+    /**
+     * @var \BERGWERK\BwrkOnepage\Domain\Repository\PagesRepository
+     * @inject
+     */
+    protected $pagesRepository;
+
     public function showOnepageAction()
     {
-        $settings = $this->settings;
-        $pages = $settings['pages'];
-        $pagesArr = array();
+        $conf = $this->settings;
+        $pages = $conf['pages'];
 
-        $pageIds = explode(',', $pages);
-        foreach($pageIds as $pageId)
+        if(strlen($pages) > 0)
         {
-            $contentArr = array();
+            $pageIds = explode(',', $pages);
+            $fullArray = array();
 
-            $contentElements = $this->contentRepository->findByPid($pageId);
+            $cObj = $this->configurationManager->getContentObject();
+            $cObjData = $cObj->data;
+            $this->view->assign('cid', $cObjData['uid']);
 
-            foreach($contentElements as $contentElement)
+
+            if(count($pageIds) > 0)
             {
-                if($contentElement->getColPos() == "0")
+                if(strlen($pageIds[0]) > 0)
                 {
-                    $contentArr[] = $contentElement->getUid();
+                    $i=0;
+                    foreach($pageIds as $pageId)
+                    {
+                        $items = $this->contentRepository->getContentByPid($pageId);
+                        $page = $this->pagesRepository->findByUid($pageId);
+
+                        $j=0;
+                        $tmpJ = array();
+                        foreach ($items as $item)
+                        {
+                            $tmpJ[$j] = array(
+                                'uid' => $item->getUid(),
+                                'pid' => $item->getPid(),
+                                'header' => $item->getHeader(),
+                                'sorting' => $item->getSorting(),
+                            );
+
+                            $j++;
+                        }
+                        $fullArray[$i]['pid'] = $pageId;
+                        $fullArray[$i]['title'] = $page->getTitle();
+                        $fullArray[$i]['tab'] = $tmpJ;
+
+                        $i++;
+                    }
+                    $this->view->assign('fullArray', $fullArray);
                 }
             }
-            $pagesArr[] = array(
-                'id' => $pageId,
-                'contentElements' => $contentArr
-            );
         }
-        $this->view->assign('pages', $pagesArr);
     }
+
+//    public function showOnepageAction()
+//    {
+//        $settings = $this->settings;
+//        $pages = $settings['pages'];
+//        $pagesArr = array();
+//
+//        $pageIds = explode(',', $pages);
+//        foreach($pageIds as $pageId)
+//        {
+//            $contentArr = array();
+//
+//            $contentElements = $this->contentRepository->findByPid($pageId);
+//
+//            foreach($contentElements as $contentElement)
+//            {
+//                if($contentElement->getColPos() == "0")
+//                {
+//                    $contentArr[] = $contentElement->getUid();
+//                }
+//            }
+//            $pagesArr[] = array(
+//                'id' => $pageId,
+//                'contentElements' => $contentArr
+//            );
+//        }
+//        $this->view->assign('pages', $pagesArr);
+//    }
 }

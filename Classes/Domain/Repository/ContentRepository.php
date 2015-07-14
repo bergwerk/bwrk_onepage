@@ -47,6 +47,23 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         $this->setDefaultQuerySettings($querySettings);
     }
 
+    /**
+     * @param $pid
+     * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+     */
+    public function getContentByPid($pid)
+    {
+        $query = $this->createQuery();
+        $query->getQuerySettings()->setRespectStoragePage(FALSE);
+        $query->matching(
+            $query->logicalAnd(
+                $query->equals("pid", $pid),
+                $query->equals("tx_gridelements_container", 0)
+            )
+        );
+
+        return $query->execute();
+    }
 
     /**
      * @param $pid
