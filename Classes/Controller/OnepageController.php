@@ -66,25 +66,26 @@ class OnepageController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
                     $i=0;
                     foreach($pageIds as $pageId)
                     {
-                        $items = $this->contentRepository->getContentByPid($pageId);
+                        $contentElements = $this->contentRepository->getContentByPid($pageId);
                         $page = $this->pagesRepository->findByUid($pageId);
 
                         $j=0;
-                        $tmpJ = array();
-                        foreach ($items as $item)
+                        $tmpContentElements = array();
+
+                        foreach ($contentElements as $contentElement)
                         {
-                            $tmpJ[$j] = array(
-                                'uid' => $item->getUid(),
-                                'pid' => $item->getPid(),
-                                'header' => $item->getHeader(),
-                                'sorting' => $item->getSorting(),
+                            $tmpContentElements[$j] = array(
+                                'uid' => $contentElement->getUid(),
+                                'pid' => $contentElement->getPid(),
+                                'header' => $contentElement->getHeader(),
+                                'sorting' => $contentElement->getSorting(),
                             );
 
                             $j++;
                         }
                         $fullArray[$i]['pid'] = $pageId;
                         $fullArray[$i]['title'] = $page->getTitle();
-                        $fullArray[$i]['tab'] = $tmpJ;
+                        $fullArray[$i]['contentElements'] = $tmpContentElements;
 
                         $i++;
                     }
