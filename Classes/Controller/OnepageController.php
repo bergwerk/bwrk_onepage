@@ -27,6 +27,7 @@ namespace BERGWERK\BwrkOnepage\Controller;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use BERGWERK\BwrkOnepage\Domain\Model\Pages;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
@@ -66,6 +67,8 @@ class OnepageController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
                     $i=0;
                     foreach($pageIds as $pageId)
                     {
+                        /** @var Pages $page */
+
                         $contentElements = $this->contentRepository->getContentByPid($pageId);
                         $page = $this->pagesRepository->findByUid($pageId);
 
@@ -85,6 +88,7 @@ class OnepageController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
                         }
                         $fullArray[$i]['pid'] = $pageId;
                         $fullArray[$i]['title'] = $page->getTitle();
+                        $fullArray[$i]['sectionClass'] = $page->getTxBwrkonepageSectionclass();
                         $fullArray[$i]['contentElements'] = $tmpContentElements;
 
                         $i++;

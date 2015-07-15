@@ -65,6 +65,11 @@ class Pages extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
     protected $title;
 
     /**
+     * @var int
+     */
+    protected $txBwrkonepageSectionclass;
+
+    /**
      * Returns the uid
      *
      * @return int $uid
@@ -90,6 +95,24 @@ class Pages extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
     public function getTitle() {
         return $this->title;
     }
+
+    /**
+     * @return int
+     */
+    public function getTxBwrkonepageSectionclass()
+    {
+        return $this->txBwrkonepageSectionclass;
+    }
+
+    /**
+     * @param int $txBwrkonepageSectionclass
+     */
+    public function setTxBwrkonepageSectionclass($txBwrkonepageSectionclass)
+    {
+        $this->txBwrkonepageSectionclass = $txBwrkonepageSectionclass;
+    }
+
+
 
 }
 ?>
