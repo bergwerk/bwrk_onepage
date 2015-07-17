@@ -1,15 +1,28 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-    <file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2014-10-01T00:00:00Z" product-name="bwrk_onepage">
+    <file target-language="de" datatype="plaintext" original="messages" date="2014-10-01T00:00:00Z" product-name="bwrk_onepage">
         <header/>
         <body>
             <trans-unit id="bwrk_onepage.settings" xml:space="preserve">
-				<source>Config</source>
                 <target>Einstellungen</target>
 			</trans-unit>
 			<trans-unit id="bwrk_onepage.settings.pages" xml:space="preserve">
-				<source>Pages</source>
-                <target>Seiten</target>
+                <target>Welche Seiten sollen angezeigt werden?</target>
+			</trans-unit>
+            <trans-unit id="bwrk_onepage.settings.menu" xml:space="preserve">
+                <target>Menü anzeigen?</target>
+			</trans-unit>
+            <trans-unit id="bwrk_onepage.settings.menuScroll" xml:space="preserve">
+                <target>Automatisch zur Section Scrollen bei Klick auf das Menü?</target>
+			</trans-unit>
+            <trans-unit id="bwrk_onepage.settings.menuScrollSpeed" xml:space="preserve">
+                <target>Scroll-Geschwindigkeit</target>
+			</trans-unit>
+            <trans-unit id="bwrk_onepage.settings.pageTitle" xml:space="preserve">
+                <target>Seitentitel ausgeben?</target>
+			</trans-unit>
+            <trans-unit id="bwrk_onepage.settings.pageTitleType" xml:space="preserve">
+                <target>Seitentitel als Typ ausgeben:</target>
 			</trans-unit>
         </body>
     </file>

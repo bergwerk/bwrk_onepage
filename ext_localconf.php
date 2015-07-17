@@ -7,16 +7,12 @@ if (!defined('TYPO3_MODE'))
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
     'BERGWERK.' . $_EXTKEY,
-    'onepagePlugin',
+    'Pi1',
     array(
-        'Onepage' => 'showOnepage'
+        'Onepage' => 'show'
     ),
     // non-cacheable actions
     array(
-        'Onepage' => 'showOnepage'
+        'Onepage' => 'show'
     )
 );
-
-//$GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects']['TYPO3\\CMS\\Frontend\\ContentObject\\Menu\\TextMenuContentObject'] = array(
-//    'className' => 'BERGWERK\\BwrkOnepage\\Typo3Overrides\\TextMenuContentObject'
-//);

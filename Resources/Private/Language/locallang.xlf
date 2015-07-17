@@ -7,7 +7,22 @@
 				<source>Config</source>
 			</trans-unit>
 			<trans-unit id="bwrk_onepage.settings.pages" xml:space="preserve">
-				<source>Pages</source>
+				<source>Which Pages</source>
+			</trans-unit>
+            <trans-unit id="bwrk_onepage.settings.menu" xml:space="preserve">
+				<source>Show Menu</source>
+			</trans-unit>
+			<trans-unit id="bwrk_onepage.settings.menuScroll" xml:space="preserve">
+				<source>Auto Scroll Content</source>
+			</trans-unit>
+			<trans-unit id="bwrk_onepage.settings.menuScrollSpeed" xml:space="preserve">
+                <source>Scroll Speed</source>
+			</trans-unit>
+            <trans-unit id="bwrk_onepage.settings.pageTitle" xml:space="preserve">
+				<source>Show Page-Titles</source>
+			</trans-unit>
+            <trans-unit id="bwrk_onepage.settings.pageTitleType" xml:space="preserve">
+				<source>Page-Title Type</source>
 			</trans-unit>
         </body>
     </file>

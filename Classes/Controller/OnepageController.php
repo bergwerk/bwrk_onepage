@@ -28,11 +28,20 @@ namespace BERGWERK\BwrkOnepage\Controller;
  * ************************************************************* */
 
 use BERGWERK\BwrkOnepage\Domain\Model\Pages;
+use TYPO3\CMS\Core\Messaging\AbstractMessage;
+use TYPO3\CMS\Core\Messaging\FlashMessage;
+use TYPO3\CMS\Core\Page\PageRenderer;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 class OnepageController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
+    /**
+     * @var string
+     */
+    protected $extKey;
+
     /**
      * @var \BERGWERK\BwrkOnepage\Domain\Repository\ContentRepository
      * @inject
@@ -45,15 +54,29 @@ class OnepageController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      */
     protected $pagesRepository;
 
-    public function showOnepageAction()
+    /**
+     * Initializes the controller before invoking an action method.
+     *
+     * Override this method to solve tasks which all actions have in
+     * common.
+     *
+     * @return void
+     * @api
+     */
+    protected function initializeAction()
     {
-        $conf = $this->settings;
-        $pages = $conf['pages'];
+        $this->extKey = 'bwrk_onepage';
+    }
+
+
+    public function showAction()
+    {
+        $pages = $this->settings['pages'];
+        $object = array();
 
         if(strlen($pages) > 0)
         {
             $pageIds = explode(',', $pages);
-            $fullArray = array();
 
             $cObj = $this->configurationManager->getContentObject();
             $cObjData = $cObj->data;
@@ -86,16 +109,21 @@ class OnepageController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 
                             $j++;
                         }
-                        $fullArray[$i]['pid'] = $pageId;
-                        $fullArray[$i]['title'] = $page->getTitle();
-                        $fullArray[$i]['sectionClass'] = $page->getTxBwrkonepageSectionclass();
-                        $fullArray[$i]['contentElements'] = $tmpContentElements;
+                        $object[$i]['uid'] = $page->getUid();
+                        $object[$i]['pid'] = $pageId;
+                        $object[$i]['title'] = $page->getTitle();
+                        $object[$i]['sectionClass'] = $page->getTxBwrkonepageSectionclass();
+                        $object[$i]['contentElements'] = $tmpContentElements;
 
                         $i++;
                     }
-                    $this->view->assign('fullArray', $fullArray);
                 }
             }
+        } else {
+            $this->addFlashMessage('No Pages Defined!', $this->extKey, AbstractMessage::ERROR);
         }
+
+        $this->view->assign('settings', $this->settings);
+        $this->view->assign('object', $object);
     }
 }

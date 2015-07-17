@@ -1,0 +1,9 @@
+<f:for each="{object}" as="page">
+    <section{f:if(condition: settings.menu, then: ' id="section-id-{page.uid}"')}{f:if(condition: page.sectionClass, then: ' class="section-state{page.sectionClass}"')}>
+
+        <div class="section-content">
+            <f:render partial="Onepage/Title" arguments="{settings: settings, page: page}" />
+            <f:render partial="Onepage/Content" arguments="{settings: settings, page: page}" />
+        </div>
+    </section>
+</f:for>

@@ -7,7 +7,7 @@ if (!defined('TYPO3_MODE'))
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
     'BERGWERK.'.$_EXTKEY,
-    'onepagePlugin',
+    'Pi1',
     'BERGWERK Onepage Viewer'
 );
 
@@ -17,11 +17,11 @@ if (!defined('TYPO3_MODE'))
 
 // Flexform einbinden
 $extensionName = strtolower(\TYPO3\CMS\Core\Utility\GeneralUtility::underscoredToUpperCamelCase($_EXTKEY));
-$pluginName = strtolower('onepagePlugin');
+$pluginName = strtolower('Pi1');
 $pluginSignature = $extensionName . '_' . $pluginName;
 $TCA['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 'layout,select_key,pages';
 $TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/ShowOnepage.xml');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/Show.xml');
 
 
 
@@ -51,5 +51,5 @@ $tmp_extpages_columns = array(
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('pages',$tmp_extpages_columns);
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('pages_language_overlay',$tmp_extpages_columns);
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('pages', '--div--;Erweitert,tx_bwrkonepage_sectionclass', 1);
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('pages', '--div--;BERGWERK Onepage,tx_bwrkonepage_sectionclass', 1);
 $TCA['pages_language_overlay']['interface']['showRecordFieldList'] .= ',tx_bwrkonepage_sectionclass';
