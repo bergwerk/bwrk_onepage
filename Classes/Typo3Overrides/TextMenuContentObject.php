@@ -1,7 +1,5 @@
 <?php
-namespace BERGWERK\BWrkOnepage\Typo3Overrides;
-
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+namespace BERGWERK\BwrkOnepage\Typo3Overrides;
 
 class TextMenuContentObject extends \TYPO3\CMS\Frontend\ContentObject\Menu\TextMenuContentObject
 {
