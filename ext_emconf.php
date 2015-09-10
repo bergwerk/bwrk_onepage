@@ -29,17 +29,17 @@
 
 $EM_CONF[$_EXTKEY] = array(
     'title' => 'Onepage Extension',
-    'description' => 'TYPO3 Onepage-Extension for pages. You can take this extension to use typo3 subpages for an TYPO3 onepage-layout.',
+    'description' => 'TYPO3 Onepage-Extension which allows you to use subpages as onepage layout.',
     'category' => 'plugin',
     'author' => 'BERGWERK [GD]',
     'author_email' => 'gd@bergwerk.ag',
-    'author_company' => 'BERGWERK',
+    'author_company' => 'BERGWERK Werbeagentur GmbH',
     'state' => 'stable',
     'internal' => '',
     'uploadfolder' => '0',
     'createDirs' => '',
     'clearCacheOnLoad' => 0,
-    'version' => '2.1.1',
+    'version' => '2.1.2',
     'constraints' => array(
         'depends' => array(
             'typo3' => '6.2.0-6.2.99',
@@ -47,6 +47,6 @@ $EM_CONF[$_EXTKEY] = array(
         'conflicts' => array(
         ),
         'suggests' => array(
-        ),
-    ),
+        )
+    )
 );
