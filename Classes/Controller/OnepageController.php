@@ -1,19 +1,16 @@
 <?php
 namespace BERGWERK\BwrkOnepage\Controller;
 
-
-/* * *************************************************************
- *
+/***************************************************************
  *  Copyright notice
  *
- *  (c) 2014
- *
+ *  (c) 2015 Georg Dümmler <gd@bergwerk.ag>
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
  *  free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 3 of the License, or
+ *  the Free Software Foundation; either version 2 of the License, or
  *  (at your option) any later version.
  *
  *  The GNU General Public License can be found at
@@ -25,7 +22,11 @@ namespace BERGWERK\BwrkOnepage\Controller;
  *  GNU General Public License for more details.
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
- * ************************************************************* */
+ *
+ * @author	Georg Dümmler <gd@bergwerk.ag>
+ * @package	TYPO3
+ * @subpackage	bwrk_onepage
+ ***************************************************************/
 
 use BERGWERK\BwrkOnepage\Domain\Model\Pages;
 use TYPO3\CMS\Core\Messaging\AbstractMessage;
@@ -33,8 +34,11 @@ use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
+/**
+ * Class OnepageController
+ * @package BERGWERK\BwrkOnepage\Controller
+ */
 class OnepageController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
     /**
@@ -68,7 +72,6 @@ class OnepageController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         $this->extKey = 'bwrk_onepage';
     }
 
-
     public function showAction()
     {
         $pages = $this->settings['pages'];
@@ -94,6 +97,8 @@ class OnepageController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 
                         $contentElements = $this->contentRepository->getContentByPid($pageId);
                         $page = $this->pagesRepository->findByUid($pageId);
+
+                        if(is_null($page)) continue;
 
                         $j=0;
                         $tmpContentElements = array();
