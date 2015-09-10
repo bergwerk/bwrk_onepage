@@ -29,7 +29,7 @@
 
 $EM_CONF[$_EXTKEY] = array(
     'title' => 'Onepage Extension',
-    'description' => 'Typo3 Onepage-Extension for pages. You can take this extension to use typo3 subpages for an typo3 onepage-layout.',
+    'description' => 'TYPO3 Onepage-Extension for pages. You can take this extension to use typo3 subpages for an TYPO3 onepage-layout.',
     'category' => 'plugin',
     'author' => 'BERGWERK [GD]',
     'author_email' => 'gd@bergwerk.ag',
