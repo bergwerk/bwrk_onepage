@@ -56,10 +56,18 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
     {
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(FALSE);
+
+        $constraints = array(
+            $query->equals("pid", $pid)
+        );
+
+        if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('tx_gridelements')) {
+            $constraints[] = $query->equals("tx_gridelements_container", 0);
+        }
+
         $query->matching(
             $query->logicalAnd(
-                $query->equals("pid", $pid),
-                $query->equals("tx_gridelements_container", 0)
+                $constraints
             )
         );
 
