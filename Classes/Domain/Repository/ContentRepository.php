@@ -27,6 +27,8 @@ namespace BERGWERK\BwrkOnepage\Domain\Repository;
  * @package	TYPO3
  * @subpackage	bwrk_onepage
  ***************************************************************/
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /**
  * Class ContentRepository
@@ -62,6 +64,9 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         );
 
         if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('tx_gridelements')) {
+            $constraints[] = $query->equals("tx_gridelements_container", 0);
+        }
+        if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('gridelements')) {
             $constraints[] = $query->equals("tx_gridelements_container", 0);
         }
 
