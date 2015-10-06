@@ -24,6 +24,9 @@
             <trans-unit id="bwrk_onepage.settings.pageTitleType" xml:space="preserve">
 				<source>Page-Title Type</source>
 			</trans-unit>
+			<trans-unit id="extConf.feature.enablejQuery" xml:space="preserve">
+				<source>Include jQuery?</source>
+			</trans-unit>
         </body>
     </file>
 </xliff>

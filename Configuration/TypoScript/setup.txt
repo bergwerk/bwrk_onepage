@@ -13,4 +13,12 @@ plugin.tx_bwrkonepage {
    }
 }
 
+page = PAGE
 page.includeJSFooter.bwrk_onepage = EXT:bwrk_onepage/Resources/Public/Js/main.min.js
+
+#####################
+### Include Jquery?
+#####################
+[userFunc = BERGWERK\BwrkOnepage\UserFunc\Extconf::match(enableJQuery)]
+page.includeJSLibs.bwrk_onepage_jQuery = EXT:bwrk_onepage/Resources/Public/Js/jquery-1.11.3.min.js
+[global]

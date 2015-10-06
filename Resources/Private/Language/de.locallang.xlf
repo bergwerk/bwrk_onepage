@@ -24,6 +24,9 @@
             <trans-unit id="bwrk_onepage.settings.pageTitleType" xml:space="preserve">
                 <target>Seitentitel als Typ ausgeben:</target>
 			</trans-unit>
+            <trans-unit id="extConf.feature.enablejQuery" xml:space="preserve">
+				<target>jQuery einfügen?</target>
+			</trans-unit>
         </body>
     </file>
 </xliff>
