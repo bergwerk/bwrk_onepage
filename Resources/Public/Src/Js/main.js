@@ -40,6 +40,8 @@ $(document).ready(function () {
             scrollTop: $('#' + anchor).offset().top
         }, speed);
 
+        window.location.href = '#'+anchor;
+
         return false;
     });
 });
