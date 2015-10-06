@@ -1,5 +1,5 @@
 # Onepage Extension
-TYPO3 Onepage-Extension which allows you to use subpages as onepage layout.
+TYPO3 Onepage-Extension which allows you to use subpages as onepage layout
 
 ## Installation & Configuration
 1. Install the extension
