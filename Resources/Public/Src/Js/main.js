@@ -32,8 +32,6 @@ $(document).ready(function () {
         var anchor = href.split('#');
         anchor = anchor[anchor.length - 1];
 
-        if(speed == 0) speed = 2000;
-
         $('html, body').animate({
             scrollTop: $('#' + anchor).offset().top
         }, speed);
