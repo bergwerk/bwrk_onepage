@@ -1,4 +1,3 @@
-
 // Gulp Modules
 var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
@@ -16,7 +15,8 @@ var defaultTasks = [
 ];
 
 var jsFilesApp = [
-    'Resources/Private/Src/Js/*.js'
+    'Resources/Private/Src/Js/singlePageNav.js',
+    'Resources/Private/Src/Js/custom.js'
 ];
 
 gulp.task('styles', stylesTask);
