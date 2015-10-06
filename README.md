@@ -9,3 +9,4 @@ TYPO3 Onepage-Extension which allows you to use subpages as onepage layout
 
 [Here](https://git.bergwerk.ag/typo3-extensions/bwrk_onepage/wikis/home) you can find the extension manual.
 
+Mirror
