@@ -1,6 +1,8 @@
 <f:comment>
     <f:if condition="{settings.menu}">
-        <ul class="tx-bwrk-onepage-menu{f:if(condition: settings.menuScroll, then: ' scrollable')}"{f:if(condition: settings.menuScrollSpeed, then: ' data-scroll-speed="{settings.menuScrollSpeed}"')}>
+        <ul class="tx-bwrk-onepage-menu{f:if(condition: settings.menuScroll, then: ' scrollable')}" {f:if(condition:
+            settings.menuScrollSpeed, then:
+        ' data-scroll-speed="{settings.menuScrollSpeed}"')}>
         <f:for each="{object}" as="page">
             <li>
                 <f:link.page section="section-id-{page.uid}">{page.title}</f:link.page>
@@ -10,13 +12,12 @@
     </f:if>
 </f:comment>
 
-
-<ul class="tx-bwrk-onepage-menu">
-<f:for each="{object}" as="page">
-    <li>
-        <f:link.page section="section-id-{page.uid}">{page.title}</f:link.page>
-    </li>
-</f:for>
-</ul>
-
-
+<nav class="tx-bwrk-onepage-menu" data-sticky>
+    <ul>
+        <f:for each="{object}" as="page">
+            <li>
+                <f:link.page section="section-id-{page.uid}">{page.title}</f:link.page>
+            </li>
+        </f:for>
+    </ul>
+</nav>

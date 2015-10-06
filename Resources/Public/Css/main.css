@@ -25,6 +25,13 @@
  * @package	TYPO3
  * @subpackage	bwrk_onepage
  ***************************************************************/
-body {
-  background-color: red !important;
+.tx-bwrk-onepage-menu {
+  background-color: gainsboro;
+}
+
+.tx-bwrk-onepage-menu.sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
 }
