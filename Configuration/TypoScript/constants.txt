@@ -1,8 +1,8 @@
 plugin.tx_bwrkonepage {
    view {
-      templateRootPath = EXT:bwrk_onepage/Resources/Private/Templates/
-      layoutRootPath = EXT:bwrk_onepage/Resources/Private/Layouts/
-      partialRootPath = EXT:bwrk_onepage/Resources/Private/Partials/
+      templateRootPath = EXT:bwrk_onepage/Resources/Private/Fluid/Default/Templates/
+      layoutRootPath = EXT:bwrk_onepage/Resources/Private/Fluid/Default/Layouts/
+      partialRootPath = EXT:bwrk_onepage/Resources/Private/Fluid/Default/Partials/
    }
    settings {
       menu = 1

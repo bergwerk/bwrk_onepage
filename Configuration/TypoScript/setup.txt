@@ -1,8 +1,14 @@
 plugin.tx_bwrkonepage {
    view {
-      templateRootPath = {$plugin.tx_bwrkonepage.view.templateRootPath}
-      layoutRootPath = {$plugin.tx_bwrkonepage.view.layoutRootPath}
-      partialRootPath = {$plugin.tx_bwrkonepage.view.partialRootPath}
+      templateRootPaths {
+         100 = {$plugin.tx_bwrkonepage.view.templateRootPath}
+      }
+      layoutRootPaths {
+         100 = {$plugin.tx_bwrkonepage.view.layoutRootPath}
+      }
+      partialRootPaths {
+         100 = {$plugin.tx_bwrkonepage.view.partialRootPath}
+      }
    }
    settings {
       menu = {$plugin.tx_bwrkonepage.settings.menu}
