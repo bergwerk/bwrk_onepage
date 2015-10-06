@@ -11,8 +11,5 @@ if (!defined('TYPO3_MODE'))
     array(
         'Onepage' => 'show'
     ),
-    // non-cacheable actions
-    array(
-        'Onepage' => 'show'
-    )
+    array()
 );
