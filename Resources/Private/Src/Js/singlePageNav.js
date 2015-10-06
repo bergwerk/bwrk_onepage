@@ -4,8 +4,6 @@
  * Dual licensed under MIT and GPL.
  * @author Chris Wojcik
  * @version 1.2.0
- *
- * @contributer Marvin HÜBNER (BERGWERK)
  */
 
 // Utility
@@ -65,11 +63,8 @@ if (typeof Object.create !== 'function') {
 
                 self.scrollTo($elem, function() {
 
-                    // Update the Hash behind the URL Path
-                    var pathArray = window.location.pathname;
-
                     if (self.options.updateHash && history.pushState) {
-                        history.pushState(null,null, pathArray + link.hash);
+                        history.pushState(null,null, link.hash);
                     }
 
                     self.setTimer();

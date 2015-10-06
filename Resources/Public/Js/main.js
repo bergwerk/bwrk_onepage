@@ -4,8 +4,6 @@
  * Dual licensed under MIT and GPL.
  * @author Chris Wojcik
  * @version 1.2.0
- *
- * @contributer Marvin HÜBNER (BERGWERK)
  */
 
 // Utility
@@ -65,11 +63,8 @@ if (typeof Object.create !== 'function') {
 
                 self.scrollTo($elem, function() {
 
-                    // Update the Hash behind the URL Path
-                    var pathArray = window.location.pathname;
-
                     if (self.options.updateHash && history.pushState) {
-                        history.pushState(null,null, pathArray + link.hash);
+                        history.pushState(null,null, link.hash);
                     }
 
                     self.setTimer();
@@ -212,6 +207,17 @@ $(window).load(function () {
         });
     }
 
+    //function updateHash(obj) {
+    //    var dataUpdateHash = obj.attr('data-update-hash');
+    //
+    //    if (dataUpdateHash != undefined) {
+    //        return true;
+    //    }
+    //    else {
+    //        return false;
+    //    }
+    //}
+
     bwrkOnepageNav.each(function(){
         var self = $(this);
 
@@ -221,17 +227,19 @@ $(window).load(function () {
             getSticky(self);
         }
 
-        bwrkOnepageNav.singlePageNav({
-            offset: 0,
-            threshold: 120,
-            speed: 400,
-            currentClass: 'current',
-            easing: 'swing',
-            updateHash: false,
-            filter: '',
-            onComplete: false,
-            beforeStart: false
-        });
+
+    });
+
+    bwrkOnepageNav.singlePageNav({
+        offset: 0,
+        threshold: 120,
+        speed: 400,
+        currentClass: 'current',
+        easing: 'swing',
+        updateHash: true,
+        filter: '',
+        onComplete: false,
+        beforeStart: false
     });
 });
 
