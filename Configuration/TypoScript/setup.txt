@@ -1,8 +1,14 @@
 plugin.tx_bwrkonepage {
    view {
-      templateRootPath = {$plugin.tx_bwrkonepage.view.templateRootPath}
-      layoutRootPath = {$plugin.tx_bwrkonepage.view.layoutRootPath}
-      partialRootPath = {$plugin.tx_bwrkonepage.view.partialRootPath}
+      templateRootPaths {
+         100 = {$plugin.tx_bwrkonepage.view.templateRootPath}
+      }
+      layoutRootPaths {
+         100 = {$plugin.tx_bwrkonepage.view.layoutRootPath}
+      }
+      partialRootPaths {
+         100 = {$plugin.tx_bwrkonepage.view.partialRootPath}
+      }
    }
    settings {
       menu = {$plugin.tx_bwrkonepage.settings.menu}
@@ -13,4 +19,14 @@ plugin.tx_bwrkonepage {
    }
 }
 
-page.includeJSFooter.bwrk_onepage = EXT:bwrk_onepage/Resources/Public/Js/main.min.js
+page = PAGE
+page.includeJSFooter.bwrk_onepage = {$plugin.tx_bwrkonepage.settings.js.main}
+
+page.includeCSS.bwrk_onepage = {$plugin.tx_bwrkonepage.settings.css.main}
+
+#####################
+### Include Jquery?
+#####################
+[userFunc = BERGWERK\BwrkOnepage\UserFunc\Extconf::match(enableJQuery)]
+page.includeJSLibs.bwrk_onepage_jQuery = {$plugin.tx_bwrkonepage.settings.js.jQuery}
+[global]

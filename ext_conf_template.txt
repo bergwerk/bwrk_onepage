@@ -1,0 +1,6 @@
+############################
+### Activate JS for Plugin ###
+###########################
+
+# cat=General/features/10; type=boolean; label=LLL:EXT:bwrk_onepage/Resources/Private/Language/locallang.xlf:extConf.feature.enablejQuery
+enableJQuery = 0

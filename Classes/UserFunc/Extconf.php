@@ -1,4 +1,5 @@
 <?php
+namespace BERGWERK\BwrkOnepage\UserFunc;
 
 /***************************************************************
  *  Copyright notice
@@ -26,27 +27,29 @@
  * @package	TYPO3
  * @subpackage	bwrk_onepage
  ***************************************************************/
+use BERGWERK\BwrkOnepage\Utility\Configuration;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
-$EM_CONF[$_EXTKEY] = array(
-    'title' => 'Onepage Extension',
-    'description' => 'TYPO3 Onepage-Extension which allows you to use subpages as onepage layout.',
-    'category' => 'plugin',
-    'author' => 'BERGWERK [GD]',
-    'author_email' => 'gd@bergwerk.ag',
-    'author_company' => 'BERGWERK Werbeagentur GmbH',
-    'state' => 'stable',
-    'internal' => '',
-    'uploadfolder' => '0',
-    'createDirs' => '',
-    'clearCacheOnLoad' => 0,
-    'version' => '3.0.4',
-    'constraints' => array(
-        'depends' => array(
-            'typo3' => '6.2.0-7.99.99',
-        ),
-        'conflicts' => array(
-        ),
-        'suggests' => array(
-        )
-    )
-);
+/**
+ * Class Extconf
+ * @package BERGWERK\BwrkOnepage\Utility
+ */
+class Extconf
+{
+    /**
+     * @param string $lib
+     * @return bool
+     */
+    public function match($lib)
+    {
+        $extConf = Configuration::getExtConf();
+        foreach($extConf as $confKey => $confValue)
+        {
+            if($confKey == $lib && $confValue == '1')
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+}

@@ -1,4 +1,6 @@
 <?php
+namespace BERGWERK\BwrkOnepage\Utility;
+use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 /***************************************************************
  *  Copyright notice
@@ -27,26 +29,46 @@
  * @subpackage	bwrk_onepage
  ***************************************************************/
 
-$EM_CONF[$_EXTKEY] = array(
-    'title' => 'Onepage Extension',
-    'description' => 'TYPO3 Onepage-Extension which allows you to use subpages as onepage layout.',
-    'category' => 'plugin',
-    'author' => 'BERGWERK [GD]',
-    'author_email' => 'gd@bergwerk.ag',
-    'author_company' => 'BERGWERK Werbeagentur GmbH',
-    'state' => 'stable',
-    'internal' => '',
-    'uploadfolder' => '0',
-    'createDirs' => '',
-    'clearCacheOnLoad' => 0,
-    'version' => '3.0.4',
-    'constraints' => array(
-        'depends' => array(
-            'typo3' => '6.2.0-7.99.99',
-        ),
-        'conflicts' => array(
-        ),
-        'suggests' => array(
-        )
-    )
-);
+/**
+ * Class Configuration
+ * @package BERGWERK\BwrkOnepage\Utility
+ */
+class Configuration
+{
+    const EXT_KEY = 'bwrk_onepage';
+
+    /**
+     * @return array
+     */
+    public static function getExtConf()
+    {
+        return self::findExtConf(self::EXT_KEY);
+    }
+
+    /**
+     * @return TypoScriptFrontendController
+     */
+    public static function getTsfe()
+    {
+        return $GLOBALS['TSFE'];
+    }
+
+    public static function getTypo3ConfVars()
+    {
+        return $GLOBALS['TYPO3_CONF_VARS'];
+    }
+
+    /**
+     * @param string $extName
+     * @return array
+     */
+    protected static function findExtConf($extName = '')
+    {
+        $t3conf = self::getTypo3ConfVars();
+
+        $extKey = self::EXT_KEY;
+        if(!empty($extName)) $extKey = $extName;
+
+        return unserialize($t3conf['EXT']['extConf'][$extKey]);
+    }
+}

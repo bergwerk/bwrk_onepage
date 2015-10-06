@@ -26,17 +26,27 @@
  ***************************************************************/
 
 $(document).ready(function () {
+
     $(".tx-bwrk-onepage-menu.scrollable li a").click(function () {
-        var speed = parseInt($(this).parents('.scrollable').attr('data-scroll-speed'));
+        var ul = $(this).parents('.scrollable');
+        var speed = parseInt(ul.attr('data-scroll-speed'));
         var href = $(this).attr('href');
         var anchor = href.split('#');
         anchor = anchor[anchor.length - 1];
+        var menuHeight = $(this).parents('.scrollable').height();
+        var scrollTop = $('#' + anchor).offset().top - (menuHeight + 30);
 
-        if(speed == 0) speed = 2000;
+        ul.find('li').removeClass('active');
+        $(this).parent('li').addClass('active');
 
         $('html, body').animate({
-            scrollTop: $('#' + anchor).offset().top
+            scrollTop: scrollTop
         }, speed);
+
+        var pathArray = window.location.pathname+window.location.search;
+        if (history.pushState) {
+            history.pushState(null,null, pathArray + '#'+anchor);
+        }
 
         return false;
     });
