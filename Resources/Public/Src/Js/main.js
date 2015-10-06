@@ -28,6 +28,9 @@
 $(document).ready(function () {
 
     $(".tx-bwrk-onepage-menu.scrollable li a").click(function () {
+        $(this).parents('ul').find('li').removeClass('active');
+        $(this).parent('li').addClass('active');
+
         var speed = parseInt($(this).parents('.scrollable').attr('data-scroll-speed'));
         var href = $(this).attr('href');
         var anchor = href.split('#');
