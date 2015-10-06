@@ -10,5 +10,13 @@ plugin.tx_bwrkonepage {
       menuScrollSpeed = 2000
       pageTitle = 1
       pageTitleType = 1
+
+      js {
+         main = EXT:bwrk_onepage/Resources/Public/Js/main.min.js
+         jQuery = EXT:bwrk_onepage/Resources/Public/Js/jquery-1.11.3.min.js
+      }
+      css {
+         main = EXT:bwrk_onepage/Resources/Public/Css/main.css
+      }
    }
 }
