@@ -146,10 +146,6 @@ if (typeof Object.create !== 'function') {
         },
 
         getCurrentSection: function(scrollPos) {
-
-
-
-
             var i, hash, coords, section;
 
             for (i = 0; i < this.$links.length; i++) {
@@ -190,66 +186,74 @@ if (typeof Object.create !== 'function') {
     };
 
 })(jQuery, window, document);
-$(window).load(function () {
-    var bwrkOnepageNav = $('.tx-bwrk-onepage-menu');
+var bwrkOnepageNav = $('.tx-bwrk-onepage-menu');
+var dataSticky = bwrkOnepageNav.attr('data-sticky');
+var dataThreshold = bwrkOnepageNav.attr('data-threshold');
+var dataUpdateHash = bwrkOnepageNav.attr('data-update-hash');
 
-    function getSticky(obj) {
-        var menu = obj;
-        var stickyClass = 'sticky';
-        var body = $('body');
-
-        var menuHeight = menu.outerHeight(true);
-        var menuPosition = menu.offset();
-
-        $(window).bind('scroll', function () {
-            if ($(window).scrollTop() > menuPosition.top) {
-                menu.addClass(stickyClass);
-                body.css('margin-top', menuHeight);
-            }
-            else {
-                menu.removeClass(stickyClass);
-                body.css('margin-top', '0');
-            }
-        });
+$(document).ready(function () {
+    var scrollSpeed = 0;
+    var dataScrollSpeed = bwrkOnepageNav.attr('data-scroll-speed');
+    if (dataScrollSpeed) {
+        scrollSpeed = parseInt(dataScrollSpeed);
     }
 
-    bwrkOnepageNav.each(function () {
-        var self = $(this);
+    var threshold = 120;
+    if (dataThreshold) {
+        threshold = parseInt(dataThreshold);
+    }
 
-        var dataSticky = self.attr('data-sticky');
+    var updateHash = false;
+    if (dataUpdateHash != undefined) {
+        updateHash = true;
+    }
 
-        var offsetHeight = 0;
-        if (dataSticky != undefined) {
-            getSticky(self);
-            offsetHeight = parseInt(self.outerHeight());
-        }
+    var offsetHeight = 0;
+    //$(window).scroll(function() {
+    //    if ($('.tx-bwrk-onepage-menu.sticky').length > 0) {
+    //        offsetHeight = bwrkOnepageNav.outerHeight(true);
+    //    }
+    //});
 
-        var scrollSpeed = 0;
-        var dataScrollSpeed = self.attr('data-scroll-speed');
-        if (dataScrollSpeed) {
-            scrollSpeed = parseInt(dataScrollSpeed);
-        }
-
-        var threshold = 120;
-        var dataThreshold = self.attr('data-threshold');
-        if (dataThreshold) {
-            threshold = parseInt(dataThreshold);
-        }
-
-        var updateHash = false;
-        var dataUpdateHash = self.attr('data-update-hash');
-        if (dataUpdateHash != undefined) {
-            updateHash = true;
-        }
-
-        bwrkOnepageNav.singlePageNav({
-            offset: 60,
-            threshold: threshold,
-            speed: scrollSpeed,
-            currentClass: 'bwrk-onepage-current',
-            updateHash: updateHash
-        });
+    bwrkOnepageNav.singlePageNav({
+        offset: offsetHeight,
+        threshold: threshold,
+        speed: scrollSpeed,
+        currentClass: 'bwrk-onepage-current',
+        updateHash: updateHash
     });
 
+    console.log(offsetHeight);
 });
+
+$(window).load(function () {
+    if (dataSticky != undefined) {
+        getSticky(bwrkOnepageNav);
+    }
+});
+
+function getSticky(obj) {
+    var menu = obj;
+    var stickyClass = 'sticky';
+    var body = $('body');
+
+    var menuHeight = menu.outerHeight(true);
+    var menuPosition = menu.offset();
+
+    function addStickyClass() {
+        if ($(window).scrollTop() > menuPosition.top) {
+            menu.addClass(stickyClass);
+            body.css('margin-top', menuHeight);
+        }
+        else {
+            menu.removeClass(stickyClass);
+            body.css('margin-top', '0');
+        }
+    }
+
+    addStickyClass();
+    $(window).scroll(function() {
+        addStickyClass();
+    });
+}
 

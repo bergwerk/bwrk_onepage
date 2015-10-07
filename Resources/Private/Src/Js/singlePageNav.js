@@ -146,10 +146,6 @@ if (typeof Object.create !== 'function') {
         },
 
         getCurrentSection: function(scrollPos) {
-
-
-
-
             var i, hash, coords, section;
 
             for (i = 0; i < this.$links.length; i++) {
