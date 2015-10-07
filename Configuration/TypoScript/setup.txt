@@ -21,7 +21,6 @@ plugin.tx_bwrkonepage {
 
 page = PAGE
 page.includeJSFooter.bwrk_onepage = {$plugin.tx_bwrkonepage.settings.js.main}
-
 page.includeCSS.bwrk_onepage = {$plugin.tx_bwrkonepage.settings.css.main}
 
 #####################
