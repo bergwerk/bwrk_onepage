@@ -50,8 +50,6 @@ $(window).load(function () {
             updateHash = true;
         }
 
-        console.log(updateHash);
-
         bwrkOnepageNav.singlePageNav({
             offset: 60,
             threshold: threshold,
