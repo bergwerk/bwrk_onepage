@@ -1,18 +1,12 @@
-<f:comment>
-    <f:if condition="{settings.menu}">
-        <ul class="tx-bwrk-onepage-menu{f:if(condition: settings.menuScroll, then: ' scrollable')}" {f:if(condition:
-            settings.menuScrollSpeed, then:
-        ' data-scroll-speed="{settings.menuScrollSpeed}"')}>
-        <f:for each="{object}" as="page">
-            <li>
-                <f:link.page section="section-id-{page.uid}">{page.title}</f:link.page>
-            </li>
-        </f:for>
-        </ul>
-    </f:if>
-</f:comment>
-
-<nav class="tx-bwrk-onepage-menu" data-sticky data-scroll-speed="2000" data-update-hash>
+<f:if condition="{settings.menu}">
+    <nav class="tx-bwrk-onepage-menu"
+         {f:if(condition: settings.menuSticky, then:
+    'data-sticky')}
+    {f:if(condition: settings.menuOffset, then: 'data-offset="{settings.menuOffsetValue}"')}
+    {f:if(condition: settings.menuThreshold, then: 'data-threshold="{settings.menuThresholdValue}"')}
+    {f:if(condition: settings.menuScroll, then: 'data-scroll-speed="{settings.menuScrollValue}"')}
+    {f:if(condition: settings.menuUpdateHash, then: 'data-update-hash')}
+    >
     <ul>
         <f:for each="{object}" as="page">
             <li>
@@ -20,4 +14,5 @@
             </li>
         </f:for>
     </ul>
-</nav>
+    </nav>
+</f:if>

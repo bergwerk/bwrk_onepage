@@ -186,50 +186,83 @@ if (typeof Object.create !== 'function') {
     };
 
 })(jQuery, window, document);
+/***************************************************************
+ *  Copyright notice
+ *
+ *  (c) 2015 Marvin Hübner <mjh@bergwerk.ag>
+ *  All rights reserved
+ *
+ *  This script is part of the TYPO3 project. The TYPO3 project is
+ *  free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ *  The GNU General Public License can be found at
+ *  http://www.gnu.org/copyleft/gpl.html.
+ *
+ *  This script is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  This copyright notice MUST APPEAR in all copies of the script!
+ *
+ * @author    Marvin Hübner <mjh@bergwerk.ag>
+ * @package    TYPO3
+ * @subpackage    bwrk_onepage
+ ***************************************************************/
+
 var bwrkOnepageNav = $('.tx-bwrk-onepage-menu');
-var dataSticky = bwrkOnepageNav.attr('data-sticky');
-var dataThreshold = bwrkOnepageNav.attr('data-threshold');
-var dataUpdateHash = bwrkOnepageNav.attr('data-update-hash');
 
 $(document).ready(function () {
-    var scrollSpeed = 0;
-    var dataScrollSpeed = bwrkOnepageNav.attr('data-scroll-speed');
-    if (dataScrollSpeed) {
-        scrollSpeed = parseInt(dataScrollSpeed);
-    }
+    bwrkOnepageNav.each(function () {
+        var self = $(this);
 
-    var threshold = 120;
-    if (dataThreshold) {
-        threshold = parseInt(dataThreshold);
-    }
+        var dataOffset = self.attr('data-offset');
+        var dataThreshold = self.attr('data-threshold');
+        var dataScrollSpeed = self.attr('data-scroll-speed');
+        var dataUpdateHash = self.attr('data-update-hash');
 
-    var updateHash = false;
-    if (dataUpdateHash != undefined) {
-        updateHash = true;
-    }
+        var offset = 0;
+        if (dataOffset) {
+            offset = parseInt(dataOffset);
+        }
 
-    var offsetHeight = 0;
-    //$(window).scroll(function() {
-    //    if ($('.tx-bwrk-onepage-menu.sticky').length > 0) {
-    //        offsetHeight = bwrkOnepageNav.outerHeight(true);
-    //    }
-    //});
+        var threshold = 120;
+        if (dataThreshold) {
+            threshold = parseInt(dataThreshold);
+        }
 
-    bwrkOnepageNav.singlePageNav({
-        offset: offsetHeight,
-        threshold: threshold,
-        speed: scrollSpeed,
-        currentClass: 'bwrk-onepage-current',
-        updateHash: updateHash
+        var scrollSpeed = 0;
+        if (dataScrollSpeed) {
+            scrollSpeed = parseInt(dataScrollSpeed);
+        }
+
+        var updateHash = false;
+        if (dataUpdateHash != undefined) {
+            updateHash = true;
+        }
+
+        bwrkOnepageNav.singlePageNav({
+            offset: offset,
+            threshold: threshold,
+            speed: scrollSpeed,
+            currentClass: 'bwrk-onepage-current',
+            updateHash: updateHash
+        });
     });
-
-    console.log(offsetHeight);
 });
 
 $(window).load(function () {
-    if (dataSticky != undefined) {
-        getSticky(bwrkOnepageNav);
-    }
+    bwrkOnepageNav.each(function () {
+        var self = $(this);
+        var dataSticky = self.attr('data-sticky');
+
+        if (dataSticky != undefined) {
+            getSticky(self);
+        }
+    });
 });
 
 function getSticky(obj) {
@@ -252,8 +285,7 @@ function getSticky(obj) {
     }
 
     addStickyClass();
-    $(window).scroll(function() {
+    $(window).scroll(function () {
         addStickyClass();
     });
 }
-
