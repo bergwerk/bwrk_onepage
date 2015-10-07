@@ -4,6 +4,9 @@
  * Dual licensed under MIT and GPL.
  * @author Chris Wojcik
  * @version 1.2.0
+ *
+ * @contributer Marvin Hübner <mjh@bergwerk.ag>
+ * @github https://github.com/marvinhuebner/single-page-nav
  */
 
 // Utility
