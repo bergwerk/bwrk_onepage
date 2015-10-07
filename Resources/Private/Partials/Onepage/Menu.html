@@ -1,12 +1,26 @@
+<f:comment>
+    <f:if condition="{settings.menu}">
+        <nav class="tx-bwrk-onepage-menu"
+             {f:if(condition: settings.menuSticky, then:
+        'data-sticky')}
+        {f:if(condition: settings.menuOffset, then: 'data-offset="{settings.menuOffsetValue}"')}
+        {f:if(condition: settings.menuThreshold, then: 'data-threshold="{settings.menuThresholdValue}"')}
+        {f:if(condition: settings.menuScroll, then: 'data-scroll-speed="{settings.menuScrollValue}"')}
+        {f:if(condition: settings.menuUpdateHash, then: 'data-update-hash')}
+        >
+        <ul>
+            <f:for each="{object}" as="page">
+                <li>
+                    <f:link.page section="section-id-{page.uid}">{page.title}</f:link.page>
+                </li>
+            </f:for>
+        </ul>
+        </nav>
+    </f:if>
+</f:comment>
+
 <f:if condition="{settings.menu}">
-    <nav class="tx-bwrk-onepage-menu"
-         {f:if(condition: settings.menuSticky, then:
-    'data-sticky')}
-    {f:if(condition: settings.menuOffset, then: 'data-offset="{settings.menuOffsetValue}"')}
-    {f:if(condition: settings.menuThreshold, then: 'data-threshold="{settings.menuThresholdValue}"')}
-    {f:if(condition: settings.menuScroll, then: 'data-scroll-speed="{settings.menuScrollValue}"')}
-    {f:if(condition: settings.menuUpdateHash, then: 'data-update-hash')}
-    >
+    <nav class="tx-bwrk-onepage-menu" data-sticky data-offset="70" data-threshold="70" data-scroll-speed="1000" data-update-hash >
     <ul>
         <f:for each="{object}" as="page">
             <li>
