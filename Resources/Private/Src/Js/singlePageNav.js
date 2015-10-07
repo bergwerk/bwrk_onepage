@@ -63,8 +63,11 @@ if (typeof Object.create !== 'function') {
 
                 self.scrollTo($elem, function() {
 
+                    // Update the Hash behind the URL Path
+                    var pathArray = window.location.pathname;
+
                     if (self.options.updateHash && history.pushState) {
-                        history.pushState(null,null, link.hash);
+                        history.pushState(null,null, pathArray + link.hash);
                     }
 
                     self.setTimer();
@@ -143,6 +146,10 @@ if (typeof Object.create !== 'function') {
         },
 
         getCurrentSection: function(scrollPos) {
+
+
+
+
             var i, hash, coords, section;
 
             for (i = 0; i < this.$links.length; i++) {
@@ -159,6 +166,7 @@ if (typeof Object.create !== 'function') {
 
             // The current section or the first link if it is found
             return section || ((this.$links.length===0) ? (null) : (this.$links[0].hash));
+
         }
     };
 

@@ -63,8 +63,11 @@ if (typeof Object.create !== 'function') {
 
                 self.scrollTo($elem, function() {
 
+                    // Update the Hash behind the URL Path
+                    var pathArray = window.location.pathname;
+
                     if (self.options.updateHash && history.pushState) {
-                        history.pushState(null,null, link.hash);
+                        history.pushState(null,null, pathArray + link.hash);
                     }
 
                     self.setTimer();
@@ -143,6 +146,10 @@ if (typeof Object.create !== 'function') {
         },
 
         getCurrentSection: function(scrollPos) {
+
+
+
+
             var i, hash, coords, section;
 
             for (i = 0; i < this.$links.length; i++) {
@@ -159,6 +166,7 @@ if (typeof Object.create !== 'function') {
 
             // The current section or the first link if it is found
             return section || ((this.$links.length===0) ? (null) : (this.$links[0].hash));
+
         }
     };
 
@@ -193,62 +201,57 @@ $(window).load(function () {
         var menuHeight = menu.outerHeight(true);
         var menuPosition = menu.offset();
 
-        console.log(menuPosition.top);
-
-        $(window).bind('scroll', function(){
-           if ($(window).scrollTop() > menuPosition.top) {
-               menu.addClass(stickyClass);
-               body.css('margin-top', menuHeight);
-           }
+        $(window).bind('scroll', function () {
+            if ($(window).scrollTop() > menuPosition.top) {
+                menu.addClass(stickyClass);
+                body.css('margin-top', menuHeight);
+            }
             else {
-               menu.removeClass(stickyClass);
-               body.css('margin-top', '0');
-           }
+                menu.removeClass(stickyClass);
+                body.css('margin-top', '0');
+            }
         });
     }
 
-    //function updateHash(obj) {
-    //    var dataUpdateHash = obj.attr('data-update-hash');
-    //
-    //    if (dataUpdateHash != undefined) {
-    //        return true;
-    //    }
-    //    else {
-    //        return false;
-    //    }
-    //}
-
-    bwrkOnepageNav.each(function(){
+    bwrkOnepageNav.each(function () {
         var self = $(this);
 
         var dataSticky = self.attr('data-sticky');
 
+        var offsetHeight = 0;
         if (dataSticky != undefined) {
             getSticky(self);
+            offsetHeight = parseInt(self.outerHeight());
         }
 
+        var scrollSpeed = 0;
+        var dataScrollSpeed = self.attr('data-scroll-speed');
+        if (dataScrollSpeed) {
+            scrollSpeed = parseInt(dataScrollSpeed);
+        }
 
+        var threshold = 120;
+        var dataThreshold = self.attr('data-threshold');
+        if (dataThreshold) {
+            threshold = parseInt(dataThreshold);
+        }
+
+        var updateHash = false;
+        var dataUpdateHash = self.attr('data-update-hash');
+        if (dataUpdateHash != undefined) {
+            updateHash = true;
+        }
+
+        console.log(updateHash);
+
+        bwrkOnepageNav.singlePageNav({
+            offset: 60,
+            threshold: threshold,
+            speed: scrollSpeed,
+            currentClass: 'bwrk-onepage-current',
+            updateHash: updateHash
+        });
     });
 
-    bwrkOnepageNav.singlePageNav({
-        offset: 0,
-        threshold: 120,
-        speed: 400,
-        currentClass: 'current',
-        easing: 'swing',
-        updateHash: true,
-        filter: '',
-        onComplete: false,
-        beforeStart: false
-    });
 });
 
-// Some code for Saving
-//var scrollMenuAnimation = self.attr('data-scroll-animation');
-//
-//if (scrollMenuAnimation) {
-//    var scrollSpeed = scrollMenuAnimation;
-//}
-//else {
-//    var scrollSpeed = 0;
-//}
