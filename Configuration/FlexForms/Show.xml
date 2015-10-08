@@ -10,42 +10,6 @@
                 </TCEforms>
                 <type>array</type>
                 <el>
-                    <settings.menu>
-                        <TCEforms>
-                            <label>
-                                LLL:EXT:bwrk_onepage/Resources/Private/Language/locallang.xlf:bwrk_onepage.settings.menu
-                            </label>
-                            <onChange>reload</onChange>
-                            <config>
-                                <type>check</type>
-                            </config>
-                        </TCEforms>
-                    </settings.menu>
-                    <settings.menuScroll>
-                        <TCEforms>
-                            <label>
-                                LLL:EXT:bwrk_onepage/Resources/Private/Language/locallang.xlf:bwrk_onepage.settings.menuScroll
-                            </label>
-                            <onChange>reload</onChange>
-                            <displayCond>FIELD:settings.menu:=:1</displayCond>
-                            <config>
-                                <type>check</type>
-                            </config>
-                        </TCEforms>
-                    </settings.menuScroll>
-                    <settings.menuScrollSpeed>
-                        <TCEforms>
-                            <label>
-                                LLL:EXT:bwrk_onepage/Resources/Private/Language/locallang.xlf:bwrk_onepage.settings.menuScrollSpeed
-                            </label>
-                            <displayCond>FIELD:settings.menuScroll:=:1</displayCond>
-                            <config>
-                                <type>input</type>
-                                <eval>int</eval>
-                                <default>2000</default>
-                            </config>
-                        </TCEforms>
-                    </settings.menuScrollSpeed>
                     <settings.pageTitle>
                         <TCEforms>
                             <label>
@@ -113,5 +77,92 @@
                 </el>
             </ROOT>
         </general>
+        <menu>
+            <ROOT>
+                <TCEforms>
+                    <sheetTitle>LLL:EXT:bwrk_onepage/Resources/Private/Language/locallang.xlf:bwrk_onepage.menu</sheetTitle>
+                </TCEforms>
+                <type>array</type>
+                <el>
+                    <settings.menu>
+                        <TCEforms>
+                            <label>
+                                LLL:EXT:bwrk_onepage/Resources/Private/Language/locallang.xlf:bwrk_onepage.settings.menu
+                            </label>
+                            <onChange>reload</onChange>
+                            <config>
+                                <type>check</type>
+                            </config>
+                        </TCEforms>
+                    </settings.menu>
+
+                    <settings.menuScroll>
+                        <TCEforms>
+                            <label>
+                                LLL:EXT:bwrk_onepage/Resources/Private/Language/locallang.xlf:bwrk_onepage.settings.menuScroll
+                            </label>
+                            <onChange>reload</onChange>
+                            <displayCond>FIELD:settings.menu:=:1</displayCond>
+                            <config>
+                                <type>input</type>
+                                <eval>int</eval>
+                            </config>
+                        </TCEforms>
+                    </settings.menuScroll>
+
+                    <settings.menuOffset>
+                        <TCEforms>
+                            <label>
+                                LLL:EXT:bwrk_onepage/Resources/Private/Language/locallang.xlf:bwrk_onepage.settings.menuOffset
+                            </label>
+                            <onChange>reload</onChange>
+                            <displayCond>FIELD:settings.menu:=:1</displayCond>
+                            <config>
+                                <type>input</type>
+                                <eval>int</eval>
+                            </config>
+                        </TCEforms>
+                    </settings.menuOffset>
+                    <settings.menuThreshold>
+                        <TCEforms>
+                            <label>
+                                LLL:EXT:bwrk_onepage/Resources/Private/Language/locallang.xlf:bwrk_onepage.settings.menuThreshold
+                            </label>
+                            <onChange>reload</onChange>
+                            <displayCond>FIELD:settings.menu:=:1</displayCond>
+                            <config>
+                                <type>input</type>
+                                <eval>int</eval>
+                            </config>
+                        </TCEforms>
+                    </settings.menuThreshold>
+                    <settings.menuUpdateHash>
+                        <TCEforms>
+                            <label>
+                                LLL:EXT:bwrk_onepage/Resources/Private/Language/locallang.xlf:bwrk_onepage.settings.menuUpdateHash
+                            </label>
+                            <onChange>reload</onChange>
+                            <displayCond>FIELD:settings.menu:=:1</displayCond>
+                            <config>
+                                <type>check</type>
+                            </config>
+                        </TCEforms>
+                    </settings.menuUpdateHash>
+
+                    <settings.menuSticky>
+                        <TCEforms>
+                            <label>
+                                LLL:EXT:bwrk_onepage/Resources/Private/Language/locallang.xlf:bwrk_onepage.settings.menuSticky
+                            </label>
+                            <onChange>reload</onChange>
+                            <displayCond>FIELD:settings.menu:=:1</displayCond>
+                            <config>
+                                <type>check</type>
+                            </config>
+                        </TCEforms>
+                    </settings.menuSticky>
+                </el>
+            </ROOT>
+        </menu>
     </sheets>
 </T3DataStructure>

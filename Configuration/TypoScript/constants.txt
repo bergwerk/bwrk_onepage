@@ -4,12 +4,15 @@ plugin.tx_bwrkonepage {
       layoutRootPath = EXT:bwrk_onepage/Resources/Private/Layouts/
       partialRootPath = EXT:bwrk_onepage/Resources/Private/Partials/
    }
+
    settings {
       menu = 1
-      menuScroll = 1
-      menuScrollSpeed = 2000
+      menuScroll = 0
       pageTitle = 1
       pageTitleType = 1
+      menuOffset = 0
+      menuThreshold = 120
+      menuUpdateHash = 0
 
       js {
          main = EXT:bwrk_onepage/Resources/Public/Js/main.min.js

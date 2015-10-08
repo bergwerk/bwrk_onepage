@@ -13,9 +13,11 @@ plugin.tx_bwrkonepage {
    settings {
       menu = {$plugin.tx_bwrkonepage.settings.menu}
       menuScroll = {$plugin.tx_bwrkonepage.settings.menuScroll}
-      menuScrollSpeed = {$plugin.tx_bwrkonepage.settings.menuScrollSpeed}
       pageTitle = {$plugin.tx_bwrkonepage.settings.pageTitle}
       pageTitleType = {$plugin.tx_bwrkonepage.settings.pageTitleType}
+      menuOffset = {$plugin.tx_bwrkonepage.settings.menuOffset}
+      menuThreshold = {$plugin.tx_bwrkonepage.settings.menuThreshold}
+      menuUpdateHash = {$plugin.tx_bwrkonepage.settings.menuUpdateHash}
    }
 }
 

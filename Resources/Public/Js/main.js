@@ -67,7 +67,7 @@ if (typeof Object.create !== 'function') {
                 self.scrollTo($elem, function() {
 
                     // Update the Hash behind the URL Path
-                    var pathArray = window.location.pathname;
+                    var pathArray = window.location.pathname+window.location.search;
 
                     if (self.options.updateHash && history.pushState) {
                         history.pushState(null,null, pathArray + link.hash);

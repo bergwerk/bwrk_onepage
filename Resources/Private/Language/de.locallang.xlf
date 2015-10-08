@@ -24,6 +24,23 @@
             <trans-unit id="bwrk_onepage.settings.pageTitleType" xml:space="preserve">
                 <target>Seitentitel als Typ ausgeben:</target>
 			</trans-unit>
+
+            <trans-unit id="bwrk_onepage.settings.menuOffset" xml:space="preserve">
+				<source>Abstand über der Section</source>
+			</trans-unit>
+
+			<trans-unit id="bwrk_onepage.settings.menuThreshold" xml:space="preserve">
+				<source>Schwellenwert zum ändern der Aktiv Klasse</source>
+			</trans-unit>
+
+			<trans-unit id="bwrk_onepage.settings.menuUpdateHash" xml:space="preserve">
+				<source>Aktualisierung der URL</source>
+			</trans-unit>
+
+			<trans-unit id="bwrk_onepage.settings.menuSticky" xml:space="preserve">
+				<source>Menü oben andocken</source>
+			</trans-unit>
+
             <trans-unit id="extConf.feature.enablejQuery" xml:space="preserve">
 				<target>jQuery einfügen?</target>
 			</trans-unit>
