@@ -18,7 +18,6 @@
 			<trans-unit id="bwrk_onepage.settings.menuScroll" xml:space="preserve">
 				<source>Auto Scroll Content</source>
 			</trans-unit>
-
             <trans-unit id="bwrk_onepage.settings.pageTitle" xml:space="preserve">
 				<source>Show Page-Titles</source>
 			</trans-unit>
