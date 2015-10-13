@@ -13,9 +13,6 @@
                 <target>Menü anzeigen?</target>
 			</trans-unit>
             <trans-unit id="bwrk_onepage.settings.menuScroll" xml:space="preserve">
-                <target>Automatisch zur Section Scrollen bei Klick auf das Menü?</target>
-			</trans-unit>
-            <trans-unit id="bwrk_onepage.settings.menuScrollSpeed" xml:space="preserve">
                 <target>Scroll-Geschwindigkeit</target>
 			</trans-unit>
             <trans-unit id="bwrk_onepage.settings.pageTitle" xml:space="preserve">
@@ -24,6 +21,23 @@
             <trans-unit id="bwrk_onepage.settings.pageTitleType" xml:space="preserve">
                 <target>Seitentitel als Typ ausgeben:</target>
 			</trans-unit>
+
+            <trans-unit id="bwrk_onepage.settings.menuOffset" xml:space="preserve">
+				<target>Abstand über der Section</target>
+			</trans-unit>
+
+			<trans-unit id="bwrk_onepage.settings.menuThreshold" xml:space="preserve">
+				<target>Schwellenwert zum ändern der Aktiv Klasse</target>
+			</trans-unit>
+
+			<trans-unit id="bwrk_onepage.settings.menuUpdateHash" xml:space="preserve">
+				<target>Aktualisierung der URL</target>
+			</trans-unit>
+
+			<trans-unit id="bwrk_onepage.settings.menuSticky" xml:space="preserve">
+				<target>Menü oben andocken</target>
+			</trans-unit>
+
             <trans-unit id="extConf.feature.enablejQuery" xml:space="preserve">
 				<target>jQuery einfügen?</target>
 			</trans-unit>

@@ -1,0 +1,17 @@
+{
+  "name": "bwrk_onepage",
+  "version": "3.0.4",
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-cli": "^0.2.0",
+    "gulp-concat": "^2.2.0",
+    "gulp-plumber": "^0.6.3",
+    "gulp-rename": "^1.2.0",
+    "gulp-sass": "^2.0.3",
+    "gulp-uglify": "^0.3.1",
+    "gulp-watch": "^0.6.8"
+  },
+  "dependencies": {
+    "path": "^0.11.14"
+  }
+}

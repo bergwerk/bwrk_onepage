@@ -1,11 +1,12 @@
-//
-// Gulp Configuration
-//------------------------------------------------------------------------
-
-var onError = function (event) {
-    return gulp.src(event.path)
-        .pipe(refresh(lrserver));
-};
+// Gulp Modules
+var gulp = require('gulp'),
+    uglify = require('gulp-uglify'),
+    concat = require('gulp-concat'),
+    path = require('path'),
+    watch = require('gulp-watch'),
+    plumber = require('gulp-plumber'),
+    rename = require('gulp-rename'),
+    sass = require('gulp-sass');
 
 var defaultTasks = [
     'styles',
@@ -13,60 +14,49 @@ var defaultTasks = [
     'watch'
 ];
 
-//
-// Include necessary gulp files
-// ------------------------------------------------------------------------
+var jsFilesApp = [
+    'Resources/Private/Src/Js/singlePageNav.js',
+    'Resources/Private/Src/Js/custom.js'
+];
 
-var gulp = require('gulp'),
-    uglify = require('gulp-uglify'),
-    concat = require('gulp-concat'),
-    less = require('gulp-less'),
-    minifyCSS = require('gulp-minify-css'),
-    path = require('path'),
-    watch = require('gulp-watch'),
-    plumber = require('gulp-plumber'),
-    rename = require("gulp-rename");
+gulp.task('styles', stylesTask);
 
+gulp.task('scripts', scriptsTask);
 
-//
-// Compile Less files
-//------------------------------------------------------------------------
-
-gulp.task('styles', function () {
-    gulp.src('Resources/Public/Src/Less/main.less')
-        .pipe(plumber())
-        .pipe(less())
-        .pipe(minifyCSS())
-        .pipe(gulp.dest('Resources/Public/Css/'));
-});
-
-//
-// Concatenate & Minify Main-JS
-// ------------------------------------------------------------------------
-
-gulp.task('scripts', function() {
-
-    gulp.src('Resources/Public/Src/Js/main.js')
-        .pipe(plumber())
-        .pipe(concat('main.min.js'))
-        .pipe(uglify('compress'))
-        .pipe(gulp.dest('Resources/Public/Js/'))
-});
-
-
-
-//
-// Watch files for changes
-// ------------------------------------------------------------------------
-
-gulp.task('watch', function () {
-    gulp.watch('Resources/Public/Src/Less/**/*.less', ['styles'], onError);
-    gulp.watch('Resources/Public/Src/Js/*.js', ['scripts']);
-});
-
-
-//
-// Run Tasks
-//------------------------------------------------------------------------
+gulp.task('watch', watchTask);
 
 gulp.task('default', defaultTasks);
+
+function watchTask() {
+    gulp.watch('Resources/Private/Src/Scss/**/*.scss', ['styles']);
+    gulp.watch(jsFilesApp, ['scripts']);
+}
+
+function stylesTask() {
+    var compileStyles = function (_baseName) {
+        gulp.src(['Resources/Private/Src/Scss/' + _baseName + '.scss'])
+            .pipe(plumber())
+            .pipe(sass({outputStyle: 'expanded'}))
+            .pipe(gulp.dest('Resources/Public/Css'))
+            .pipe(rename({suffix: '.min'}))
+            .pipe(sass({outputStyle: 'compressed'}))
+            .pipe(gulp.dest('Resources/Public/Css'));
+    };
+
+    compileStyles('main');
+}
+
+function scriptsTask() {
+    var compileScripts = function (files, targetFile) {
+        gulp.src(files)
+            .pipe(plumber())
+            .pipe(concat(targetFile + '.js'))
+            .pipe(gulp.dest('Resources/Public/Js'))
+            .pipe(uglify())
+            .pipe(rename({suffix: '.min'}))
+            .pipe(gulp.dest('Resources/Public/Js'));
+    };
+
+    compileScripts(jsFilesApp, 'main');
+}
+

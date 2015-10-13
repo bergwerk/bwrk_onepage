@@ -1,0 +1,11 @@
+.tx-bwrk-onepage-menu {
+  background-color: white;
+
+  &.sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 99;
+  }
+}

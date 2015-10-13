@@ -3,8 +3,11 @@
     <file source-language="en" datatype="plaintext" original="messages" date="2014-10-01T00:00:00Z" product-name="bwrk_onepage">
         <header/>
         <body>
-            <trans-unit id="bwrk_onepage.settings" xml:space="preserve">
+			<trans-unit id="bwrk_onepage.settings" xml:space="preserve">
 				<source>Config</source>
+			</trans-unit>
+			<trans-unit id="bwrk_onepage.menu" xml:space="preserve">
+				<source>Menu</source>
 			</trans-unit>
 			<trans-unit id="bwrk_onepage.settings.pages" xml:space="preserve">
 				<source>Which Pages</source>
@@ -15,15 +18,30 @@
 			<trans-unit id="bwrk_onepage.settings.menuScroll" xml:space="preserve">
 				<source>Auto Scroll Content</source>
 			</trans-unit>
-			<trans-unit id="bwrk_onepage.settings.menuScrollSpeed" xml:space="preserve">
-                <source>Scroll Speed</source>
-			</trans-unit>
             <trans-unit id="bwrk_onepage.settings.pageTitle" xml:space="preserve">
 				<source>Show Page-Titles</source>
 			</trans-unit>
             <trans-unit id="bwrk_onepage.settings.pageTitleType" xml:space="preserve">
 				<source>Page-Title Type</source>
 			</trans-unit>
+
+			<trans-unit id="bwrk_onepage.settings.menuOffset" xml:space="preserve">
+				<source>Offset</source>
+			</trans-unit>
+
+			<trans-unit id="bwrk_onepage.settings.menuThreshold" xml:space="preserve">
+				<source>Threshold</source>
+			</trans-unit>
+
+			<trans-unit id="bwrk_onepage.settings.menuUpdateHash" xml:space="preserve">
+				<source>Update Hash</source>
+			</trans-unit>
+
+			<trans-unit id="bwrk_onepage.settings.menuSticky" xml:space="preserve">
+				<source>Sticky</source>
+			</trans-unit>
+
+
 			<trans-unit id="extConf.feature.enablejQuery" xml:space="preserve">
 				<source>Include jQuery?</source>
 			</trans-unit>

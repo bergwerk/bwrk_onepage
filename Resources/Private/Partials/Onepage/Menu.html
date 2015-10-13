@@ -1,9 +1,18 @@
 <f:if condition="{settings.menu}">
-    <ul class="tx-bwrk-onepage-menu{f:if(condition: settings.menuScroll, then: ' scrollable')}"{f:if(condition: settings.menuScrollSpeed, then: ' data-scroll-speed="{settings.menuScrollSpeed}"')}>
+    <nav class="tx-bwrk-onepage-menu"
+         {f:if(condition: settings.menuSticky, then:
+    'data-sticky')}
+    {f:if(condition: settings.menuOffset, then: 'data-offset="{settings.menuOffset}"')}
+    {f:if(condition: settings.menuThreshold, then: 'data-threshold="{settings.menuThreshold}"')}
+    {f:if(condition: settings.menuScroll, then: 'data-scroll-speed="{settings.menuScroll}"')}
+    {f:if(condition: settings.menuUpdateHash, then: 'data-update-hash')}
+    >
+    <ul>
         <f:for each="{object}" as="page">
             <li>
                 <f:link.page section="section-id-{page.uid}">{page.title}</f:link.page>
             </li>
         </f:for>
     </ul>
+    </nav>
 </f:if>
