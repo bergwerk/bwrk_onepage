@@ -6,7 +6,7 @@ plugin.tx_bwrkonepage {
    }
 
    settings {
-      menu = 1
+      menu = 0
       menuScroll = 0
       pageTitle = 1
       pageTitleType = 1

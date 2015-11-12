@@ -18,6 +18,7 @@
                             <onChange>reload</onChange>
                             <config>
                                 <type>check</type>
+                                <default>0</default>
                             </config>
                         </TCEforms>
                     </settings.pageTitle>
@@ -55,6 +56,7 @@
                                         <numIndex index="1">5</numIndex>
                                     </numIndex>
                                 </items>
+                                <default>1</default>
                             </config>
                         </TCEforms>
                     </settings.pageTitleType>
@@ -92,6 +94,7 @@
                             <onChange>reload</onChange>
                             <config>
                                 <type>check</type>
+                                <default>0</default>
                             </config>
                         </TCEforms>
                     </settings.menu>
@@ -106,6 +109,7 @@
                             <config>
                                 <type>input</type>
                                 <eval>int</eval>
+                                <default>0</default>
                             </config>
                         </TCEforms>
                     </settings.menuScroll>
@@ -120,6 +124,7 @@
                             <config>
                                 <type>input</type>
                                 <eval>int</eval>
+                                <default>0</default>
                             </config>
                         </TCEforms>
                     </settings.menuOffset>
@@ -133,6 +138,7 @@
                             <config>
                                 <type>input</type>
                                 <eval>int</eval>
+                                <default>120</default>
                             </config>
                         </TCEforms>
                     </settings.menuThreshold>
@@ -145,6 +151,7 @@
                             <displayCond>FIELD:settings.menu:=:1</displayCond>
                             <config>
                                 <type>check</type>
+                                <default>0</default>
                             </config>
                         </TCEforms>
                     </settings.menuUpdateHash>
