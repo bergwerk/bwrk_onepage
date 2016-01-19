@@ -60,6 +60,12 @@ class OnepageController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     protected $pagesRepository;
 
     /**
+     * @var \BERGWERK\BwrkOnepage\Utility\CacheUtility
+     * @inject
+     */
+    protected $cacheUtility;
+
+    /**
      * Initializes the controller before invoking an action method.
      *
      * Override this method to solve tasks which all actions have in
@@ -70,66 +76,78 @@ class OnepageController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      */
     protected function initializeAction()
     {
-        $this->extKey = 'bwrk_onepage';
+        $this->extKey = GeneralUtility::camelCaseToLowerCaseUnderscored($this->extensionName);
     }
 
     public function showAction()
     {
+        $cObj = $this->configurationManager->getContentObject();
+        $cObjData = $cObj->data;
         $pages = $this->settings['pages'];
-        $object = array();
 
-        if(strlen($pages) > 0)
-        {
-            $pageIds = explode(',', $pages);
+        $cacheIdentifier = md5($cObjData['uid'].'_'.$pages.$GLOBALS['TSFE']->id.$this->actionMethodName);
 
-            $cObj = $this->configurationManager->getContentObject();
-            $cObjData = $cObj->data;
-            $this->view->assign('cid', $cObjData['uid']);
+        $cachedHtmlOutput = $this->cacheUtility->getCache($cacheIdentifier);
+        DebuggerUtility::var_dump($cachedHtmlOutput);
 
+//        if($cachedHtmlOutput) echo 'cached';
 
-            if(count($pageIds) > 0)
-            {
-                if(strlen($pageIds[0]) > 0)
-                {
-                    $i=0;
-                    foreach($pageIds as $pageId)
-                    {
-                        /** @var Pages $page */
+        if(!$cachedHtmlOutput) {
 
-                        $contentElements = $this->contentRepository->getContentByPid($pageId);
-                        $page = $this->pagesRepository->findByUid($pageId);
+            $object = array();
 
-                        if(is_null($page)) continue;
+            if (strlen($pages) > 0) {
+                $pageIds = explode(',', $pages);
+                $this->view->assign('cid', $cObjData['uid']);
 
-                        $j=0;
-                        $tmpContentElements = array();
+                if (count($pageIds) > 0) {
+                    if (strlen($pageIds[0]) > 0) {
+                        $i = 0;
+                        foreach ($pageIds as $pageId) {
+                            /** @var Pages $page */
 
-                        foreach ($contentElements as $contentElement)
-                        {
-                            $tmpContentElements[$j] = array(
-                                'uid' => $contentElement->getUid(),
-                                'pid' => $contentElement->getPid(),
-                                'header' => $contentElement->getHeader(),
-                                'sorting' => $contentElement->getSorting(),
-                            );
+                            $contentElements = $this->contentRepository->getContentByPid($pageId);
+                            $page = $this->pagesRepository->findByUid($pageId);
 
-                            $j++;
+                            if (is_null($page)) continue;
+
+                            $j = 0;
+                            $tmpContentElements = array();
+
+                            foreach ($contentElements as $contentElement) {
+                                $tmpContentElements[$j] = array(
+                                    'uid' => $contentElement->getUid(),
+                                    'pid' => $contentElement->getPid(),
+                                    'header' => $contentElement->getHeader(),
+                                    'sorting' => $contentElement->getSorting(),
+                                );
+
+                                $j++;
+                            }
+                            $object[$i]['uid'] = $page->getUid();
+                            $object[$i]['pid'] = $pageId;
+                            $object[$i]['title'] = $page->getTitle();
+                            $object[$i]['sectionClass'] = $page->getTxBwrkonepageSectionclass();
+                            $object[$i]['contentElements'] = $tmpContentElements;
+
+                            $i++;
                         }
-                        $object[$i]['uid'] = $page->getUid();
-                        $object[$i]['pid'] = $pageId;
-                        $object[$i]['title'] = $page->getTitle();
-                        $object[$i]['sectionClass'] = $page->getTxBwrkonepageSectionclass();
-                        $object[$i]['contentElements'] = $tmpContentElements;
-
-                        $i++;
                     }
                 }
+            } else {
+                $this->addFlashMessage('No Pages Defined!', $this->extKey, AbstractMessage::ERROR);
             }
-        } else {
-            $this->addFlashMessage('No Pages Defined!', $this->extKey, AbstractMessage::ERROR);
-        }
 
-        $this->view->assign('settings', $this->settings);
-        $this->view->assign('object', $object);
+            $this->view->assign('settings', $this->settings);
+            $this->view->assign('object', $object);
+
+            $htmlOutput = $this->view->render();
+
+            DebuggerUtility::var_dump($htmlOutput);
+
+            $this->cacheUtility->setCache($htmlOutput, $cacheIdentifier);
+            return $htmlOutput;
+        }
+        return $cachedHtmlOutput;
     }
 }
