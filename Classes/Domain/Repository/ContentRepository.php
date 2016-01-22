@@ -70,6 +70,10 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
             $constraints[] = $query->equals("tx_gridelements_container", 0);
         }
 
+        if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('flux')) {
+            $constraints[] = $query->equals("tx_flux_parent", 0);
+        }
+
         $query->matching(
             $query->logicalAnd(
                 $constraints
