@@ -116,7 +116,7 @@ class OnepageController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 
                             foreach ($contentElements as $contentElement) {
                                 $tmpContentElements[$j] = array(
-                                    'uid' => $contentElement->getUid(),
+                                    'uid' => $contentElement->get_localizedUid(),
                                     'pid' => $contentElement->getPid(),
                                     'header' => $contentElement->getHeader(),
                                     'sorting' => $contentElement->getSorting(),

@@ -63,6 +63,12 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
      */
     protected $sorting;
 
+    /**
+     * _localizedUid
+     *
+     * @var string
+     */
+    protected $_localizedUid;
 
     /**
      * Returns the uid
@@ -71,6 +77,16 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
      */
     public function getUid() {
         return $this->uid;
+    }
+
+
+    /**
+     * Returns the _localizedUid
+     *
+     * @return string $_localizedUid
+     */
+    public function get_localizedUid() {
+        return $this->_localizedUid;
     }
 
     /**
