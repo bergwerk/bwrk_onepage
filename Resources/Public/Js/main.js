@@ -247,7 +247,7 @@ $(document).ready(function () {
             updateHash = true;
         }
 
-        bwrkOnepageNav.singlePageNav({
+        self.singlePageNav({
             offset: offset,
             threshold: threshold,
             speed: scrollSpeed,
