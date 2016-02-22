@@ -88,9 +88,6 @@ class OnepageController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         $cacheIdentifier = md5($cObjData['uid'].'_'.$pages.$GLOBALS['TSFE']->id.$this->actionMethodName);
 
         $cachedHtmlOutput = $this->cacheUtility->getCache($cacheIdentifier);
-        DebuggerUtility::var_dump($cachedHtmlOutput);
-
-//        if($cachedHtmlOutput) echo 'cached';
 
         if(!$cachedHtmlOutput) {
 
@@ -142,8 +139,6 @@ class OnepageController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             $this->view->assign('object', $object);
 
             $htmlOutput = $this->view->render();
-
-            DebuggerUtility::var_dump($htmlOutput);
 
             $this->cacheUtility->setCache($htmlOutput, $cacheIdentifier);
             return $htmlOutput;
