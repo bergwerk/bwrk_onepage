@@ -253,7 +253,7 @@ $(document).ready(function () {
             speed: scrollSpeed,
             currentClass: 'bwrk-onepage-current',
             updateHash: updateHash,
-            filter: 'bwrk-onepage-external'
+            filter: ':not(.bwrk-onepage-external)'
         });
     });
 });
