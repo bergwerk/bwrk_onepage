@@ -61,7 +61,8 @@ $(document).ready(function () {
             threshold: threshold,
             speed: scrollSpeed,
             currentClass: 'bwrk-onepage-current',
-            updateHash: updateHash
+            updateHash: updateHash,
+            filter: 'bwrk-onepage-external'
         });
     });
 });
