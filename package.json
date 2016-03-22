@@ -1,6 +1,6 @@
 {
   "name": "bwrk_onepage",
-  "version": "3.0.14",
+  "version": "3.0.15",
   "devDependencies": {
     "gulp": "^3.8.11",
     "gulp-cli": "^0.2.0",
