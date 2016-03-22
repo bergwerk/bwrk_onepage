@@ -36,6 +36,7 @@ $tmp_extpages_columns = array(
         'label' => 'Section-Class',
         'config' => array(
             'type' => 'select',
+            'renderType' => 'selectSingle',
             'default' => 0,
             'items' => array(
                 array('-- Bitte wählen --', 0),

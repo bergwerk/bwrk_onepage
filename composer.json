@@ -1,0 +1,10 @@
+{
+  "name": "bergwerk/bwrk_onepage",
+  "type": "typo3-cms-extension",
+  "description": "One page extension for TYPO3",
+  "homepage": "https://www.bergwerk.ag/",
+  "license": ["GPL-2.0+"],
+  "keywords": ["TYPO3 CMS", "onepage"],
+  "version": "3.0.14",
+  "minimum-stability":"stable"
+}
