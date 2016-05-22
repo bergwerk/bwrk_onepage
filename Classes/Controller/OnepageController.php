@@ -121,6 +121,10 @@ class OnepageController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 
                                 $j++;
                             }
+                            usort($tmpContentElements, function ($a, $b) {
+                                return $a['sorting'] - $b['sorting'];
+                            });
+
                             $object[$i]['uid'] = $page->getUid();
                             $object[$i]['pid'] = $pageId;
                             $object[$i]['title'] = $page->getTitle();
