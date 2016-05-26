@@ -23,9 +23,9 @@ namespace BERGWERK\BwrkOnepage\Controller;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  *
- * @author	Georg Dümmler <gd@bergwerk.ag>
- * @package	TYPO3
- * @subpackage	bwrk_onepage
+ * @author    Georg Dümmler <gd@bergwerk.ag>
+ * @package    TYPO3
+ * @subpackage    bwrk_onepage
  ***************************************************************/
 
 use BERGWERK\BwrkOnepage\Domain\Model\Pages;
@@ -84,59 +84,52 @@ class OnepageController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         $cObj = $this->configurationManager->getContentObject();
         $cObjData = $cObj->data;
         $pages = $this->settings['pages'];
+        $pageIds = explode(',', $pages);
 
-        $cacheIdentifier = md5($cObjData['uid'].'_'.$pages.$GLOBALS['TSFE']->id.$this->actionMethodName);
-
+        $cacheIdentifier = md5($cObjData['uid'] . '_' . $pages . $GLOBALS['TSFE']->id . $this->actionMethodName);
         $cachedHtmlOutput = $this->cacheUtility->getCache($cacheIdentifier);
 
-        if(!$cachedHtmlOutput) {
-
+        if (!$cachedHtmlOutput) {
             $object = array();
 
-            if (strlen($pages) > 0) {
-                $pageIds = explode(',', $pages);
-                $this->view->assign('cid', $cObjData['uid']);
+            if (count($pageIds) > 0) {
+                if (strlen($pageIds[0]) > 0) {
+                    $i = 0;
+                    foreach ($pageIds as $pageId) {
+                        /** @var Pages $page */
+                        $contentElements = $this->contentRepository->getContentByPid($pageId);
+                        $page = $this->pagesRepository->findByUid($pageId);
 
-                if (count($pageIds) > 0) {
-                    if (strlen($pageIds[0]) > 0) {
-                        $i = 0;
-                        foreach ($pageIds as $pageId) {
-                            /** @var Pages $page */
+                        if (is_null($page)) continue;
 
-                            $contentElements = $this->contentRepository->getContentByPid($pageId);
-                            $page = $this->pagesRepository->findByUid($pageId);
-
-                            if (is_null($page)) continue;
-
-                            $j = 0;
-                            $tmpContentElements = array();
-
-                            foreach ($contentElements as $contentElement) {
-                                $tmpContentElements[$j] = array(
-                                    'uid' => $contentElement->get_localizedUid(),
-                                    'pid' => $contentElement->getPid(),
-                                    'header' => $contentElement->getHeader(),
-                                    'sorting' => $contentElement->getSorting(),
-                                );
-
-                                $j++;
-                            }
-                            $object[$i]['uid'] = $page->getUid();
-                            $object[$i]['pid'] = $pageId;
-                            $object[$i]['title'] = $page->getTitle();
-                            $object[$i]['sectionClass'] = $page->getTxBwrkonepageSectionclass();
-                            $object[$i]['contentElements'] = $tmpContentElements;
-
-                            $i++;
+                        $j = 0;
+                        $tmpContentElements = array();
+                        foreach ($contentElements as $contentElement) {
+                            $tmpContentElements[$j] = array(
+                                'uid' => $contentElement->get_localizedUid(),
+                                'pid' => $contentElement->getPid(),
+                                'header' => $contentElement->getHeader(),
+                                'sorting' => $contentElement->getSorting(),
+                            );
+                            $j++;
                         }
+
+                        $object[$i]['uid'] = $page->getUid();
+                        $object[$i]['pid'] = $pageId;
+                        $object[$i]['title'] = $page->getTitle();
+                        $object[$i]['sectionClass'] = $page->getTxBwrkonepageSectionclass();
+                        $object[$i]['contentElements'] = $tmpContentElements;
+                        $i++;
                     }
                 }
             } else {
                 $this->addFlashMessage('No Pages Defined!', $this->extKey, AbstractMessage::ERROR);
             }
-
-            $this->view->assign('settings', $this->settings);
-            $this->view->assign('object', $object);
+            $this->view->assignMultiple(array(
+                'cid' => $cObjData['uid'],
+                'settings' => $this->settings,
+                'object' => $object
+            ));
 
             $htmlOutput = $this->view->render();
 
