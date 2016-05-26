@@ -60,11 +60,24 @@
                             </config>
                         </TCEforms>
                     </settings.pageTitleType>
+                    <settings.allSubPages>
+                        <TCEforms>
+                            <label>
+                                LLL:EXT:bwrk_onepage/Resources/Private/Language/locallang.xlf:bwrk_onepage.settings.allSubPages
+                            </label>
+                            <onChange>reload</onChange>
+                            <config>
+                                <type>check</type>
+                                <default>0</default>
+                            </config>
+                        </TCEforms>
+                    </settings.allSubPages>
                     <settings.pages>
                         <TCEforms>
                             <label>
                                 LLL:EXT:bwrk_onepage/Resources/Private/Language/locallang.xlf:bwrk_onepage.settings.pages
                             </label>
+                            <displayCond>FIELD:settings.allSubPages:=:0</displayCond>
                             <config>
                                 <type>group</type>
                                 <internal_type>db</internal_type>
