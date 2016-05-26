@@ -13,6 +13,7 @@ plugin.tx_bwrkonepage {
    settings {
       menu = {$plugin.tx_bwrkonepage.settings.menu}
       menuScroll = {$plugin.tx_bwrkonepage.settings.menuScroll}
+      allSubPages = {$plugin.tx_bwrkonepage.settings.allSubPages}
       pageTitle = {$plugin.tx_bwrkonepage.settings.pageTitle}
       pageTitleType = {$plugin.tx_bwrkonepage.settings.pageTitleType}
       menuOffset = {$plugin.tx_bwrkonepage.settings.menuOffset}

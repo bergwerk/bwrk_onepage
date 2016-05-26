@@ -83,19 +83,18 @@ class OnepageController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     {
         $cObj = $this->configurationManager->getContentObject();
         $cObjData = $cObj->data;
-        $pages = $this->settings['pages'];
-        $pageIds = explode(',', $pages);
+        $pages = $this->getPages($cObjData['uid']);
 
-        $cacheIdentifier = md5($cObjData['uid'] . '_' . $pages . $GLOBALS['TSFE']->id . $this->actionMethodName);
+        $cacheIdentifier = md5($cObjData['uid'] . '_' . implode(',', $pages) . $GLOBALS['TSFE']->id . $this->actionMethodName);
         $cachedHtmlOutput = $this->cacheUtility->getCache($cacheIdentifier);
 
         if (!$cachedHtmlOutput) {
             $object = array();
 
-            if (count($pageIds) > 0) {
-                if (strlen($pageIds[0]) > 0) {
+            if (count($pages) > 0) {
+                if (strlen($pages[0]) > 0) {
                     $i = 0;
-                    foreach ($pageIds as $pageId) {
+                    foreach ($pages as $pageId) {
                         /** @var Pages $page */
                         $contentElements = $this->contentRepository->getContentByPid($pageId);
                         $page = $this->pagesRepository->findByUid($pageId);
@@ -132,10 +131,25 @@ class OnepageController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             ));
 
             $htmlOutput = $this->view->render();
-
             $this->cacheUtility->setCache($htmlOutput, $cacheIdentifier);
             return $htmlOutput;
         }
         return $cachedHtmlOutput;
+    }
+
+    private function getPages($pageUid)
+    {
+        $pages = explode(',', $this->settings['pages']);
+        if((boolean) $this->settings['allSubPages'])
+        {
+            /** @var Pages[] $pagesArray */
+            $pages = array();
+            $pagesArray = $this->pagesRepository->findByPid($pageUid);
+            foreach($pagesArray as $page)
+            {
+                $pages[] = $page->getUid();
+            }
+        }
+        return $pages;
     }
 }

@@ -8,6 +8,7 @@ plugin.tx_bwrkonepage {
    settings {
       menu = 0
       menuScroll = 0
+      allSubPages = 0
       pageTitle = 1
       pageTitleType = 1
       menuOffset = 0
