@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-    <file source-language="en" datatype="plaintext" original="messages" date="2014-10-01T00:00:00Z" product-name="bwrk_onepage">
-        <header/>
-        <body>
+	<file source-language="en" datatype="plaintext" original="messages" date="2014-10-01T00:00:00Z" product-name="bwrk_onepage">
+		<header/>
+		<body>
 			<trans-unit id="bwrk_onepage.settings">
 				<source>Config</source>
 			</trans-unit>
@@ -15,16 +15,16 @@
 			<trans-unit id="bwrk_onepage.settings.pages">
 				<source>Which Pages should be shown?</source>
 			</trans-unit>
-            <trans-unit id="bwrk_onepage.settings.menu">
+			<trans-unit id="bwrk_onepage.settings.menu">
 				<source>Show Menu</source>
 			</trans-unit>
 			<trans-unit id="bwrk_onepage.settings.menuScroll">
 				<source>Auto Scroll Content</source>
 			</trans-unit>
-            <trans-unit id="bwrk_onepage.settings.pageTitle">
+			<trans-unit id="bwrk_onepage.settings.pageTitle">
 				<source>Show Page-Titles</source>
 			</trans-unit>
-            <trans-unit id="bwrk_onepage.settings.pageTitleType">
+			<trans-unit id="bwrk_onepage.settings.pageTitleType">
 				<source>Page-Title Type</source>
 			</trans-unit>
 			<trans-unit id="bwrk_onepage.settings.menuOffset">
@@ -42,6 +42,12 @@
 			<trans-unit id="extConf.feature.enablejQuery">
 				<source>Include jQuery?</source>
 			</trans-unit>
-        </body>
-    </file>
+			<trans-unit id="bwrk_onepage.pageTS.hideSectionMenuLabel">
+				<source>Hide Section in Menu</source>
+			</trans-unit>
+			<trans-unit id="bwrk_onepage.pageTS.hideSectionMenuYes">
+				<source>Yes</source>
+			</trans-unit>
+		</body>
+	</file>
 </xliff>

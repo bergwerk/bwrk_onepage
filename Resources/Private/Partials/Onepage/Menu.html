@@ -9,9 +9,11 @@
     >
     <ul>
         <f:for each="{object}" as="page">
-            <li>
-                <f:link.page section="section-id-{page.uid}">{page.title}</f:link.page>
-            </li>
+            <f:if condition="{page.hideSectionMenu} == '1'">
+                <li>
+                    <f:link.page section="section-id-{page.uid}">{page.title}</f:link.page>
+                </li>
+            </f:if>
         </f:for>
     </ul>
     </nav>

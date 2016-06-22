@@ -49,9 +49,21 @@ $tmp_extpages_columns = array(
         ),
 
     ),
+    'tx_bwrkonepage_hidesectionmenu' => array(
+        'exclude' => 0,
+        'label' => 'LLL:EXT:bwrk_onepage/Resources/Private/Language/locallang.xlf:bwrk_onepage.pageTS.hideSectionMenuLabel',
+        'config' => array(
+            'type' => 'check',
+            'default' => 0,
+            'items' => array(
+                array('LLL:EXT:bwrk_onepage/Resources/Private/Language/locallang.xlf:bwrk_onepage.pageTS.hideSectionMenuYes'),
+            ),
+        ),
+    ),
 );
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('pages',$tmp_extpages_columns);
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('pages_language_overlay',$tmp_extpages_columns);
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('pages', '--div--;BERGWERK Onepage,tx_bwrkonepage_sectionclass', 1);
-$TCA['pages_language_overlay']['interface']['showRecordFieldList'] .= ',tx_bwrkonepage_sectionclass';
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('pages', '--div--;BERGWERK Onepage,tx_bwrkonepage_sectionclass,tx_bwrkonepage_hidesectionmenu', 1);
+
+$TCA['pages_language_overlay']['interface']['showRecordFieldList'] .= ',tx_bwrkonepage_sectionclass,tx_bwrkonepage_hidesectionmenu';

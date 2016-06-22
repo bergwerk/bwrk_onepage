@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-    <file target-language="de" datatype="plaintext" original="messages" date="2014-10-01T00:00:00Z" product-name="bwrk_onepage">
-        <header/>
-        <body>
-            <trans-unit id="bwrk_onepage.settings">
-                <target>Einstellungen</target>
+	<file target-language="de" datatype="plaintext" original="messages" date="2014-10-01T00:00:00Z" product-name="bwrk_onepage">
+		<header/>
+		<body>
+			<trans-unit id="bwrk_onepage.settings">
+				<target>Einstellungen</target>
 			</trans-unit>
 			<trans-unit id="bwrk_onepage.settings.allSubPages">
 				<target>Alle Unterseiten anzeigen?</target>
 			</trans-unit>
 			<trans-unit id="bwrk_onepage.settings.pages">
-                <target>Welche Seiten sollen angezeigt werden?</target>
+				<target>Welche Seiten sollen angezeigt werden?</target>
 			</trans-unit>
-            <trans-unit id="bwrk_onepage.settings.menu">
-                <target>Menü anzeigen?</target>
+			<trans-unit id="bwrk_onepage.settings.menu">
+				<target>Menü anzeigen?</target>
 			</trans-unit>
-            <trans-unit id="bwrk_onepage.settings.menuScroll">
-                <target>Scroll-Geschwindigkeit</target>
+			<trans-unit id="bwrk_onepage.settings.menuScroll">
+				<target>Scroll-Geschwindigkeit</target>
 			</trans-unit>
-            <trans-unit id="bwrk_onepage.settings.pageTitle">
-                <target>Seitentitel ausgeben?</target>
+			<trans-unit id="bwrk_onepage.settings.pageTitle">
+				<target>Seitentitel ausgeben?</target>
 			</trans-unit>
-            <trans-unit id="bwrk_onepage.settings.pageTitleType">
-                <target>Seitentitel als Typ ausgeben:</target>
+			<trans-unit id="bwrk_onepage.settings.pageTitleType">
+				<target>Seitentitel als Typ ausgeben:</target>
 			</trans-unit>
-            <trans-unit id="bwrk_onepage.settings.menuOffset">
+			<trans-unit id="bwrk_onepage.settings.menuOffset">
 				<target>Abstand über der Section</target>
 			</trans-unit>
 			<trans-unit id="bwrk_onepage.settings.menuThreshold">
@@ -36,9 +36,15 @@
 			<trans-unit id="bwrk_onepage.settings.menuSticky">
 				<target>Menü oben andocken</target>
 			</trans-unit>
-            <trans-unit id="extConf.feature.enablejQuery">
+			<trans-unit id="extConf.feature.enablejQuery">
 				<target>jQuery einfügen?</target>
 			</trans-unit>
-        </body>
-    </file>
+			<trans-unit id="bwrk_onepage.pageTS.hideSectionMenu">
+				<source>Verstecke diese Section im Menü</source>
+			</trans-unit>
+			<trans-unit id="bwrk_onepage.pageTS.hideSectionMenuYes">
+				<source>Ja</source>
+			</trans-unit>
+		</body>
+	</file>
 </xliff>

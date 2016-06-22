@@ -117,6 +117,7 @@ class OnepageController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
                         $object[$i]['pid'] = $pageId;
                         $object[$i]['title'] = $page->getTitle();
                         $object[$i]['sectionClass'] = $page->getTxBwrkonepageSectionclass();
+                        $object[$i]['hideSectionMenu'] = $page->getTxBwrkonepageHidesectionmenu();
                         $object[$i]['contentElements'] = $tmpContentElements;
                         $i++;
                     }
