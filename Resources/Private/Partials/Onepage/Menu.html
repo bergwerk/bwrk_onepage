@@ -9,7 +9,7 @@
     >
     <ul>
         <f:for each="{object}" as="page">
-            <f:if condition="{page.hideSectionMenu} == '1'">
+            <f:if condition="{page.hideSectionMenu} == '0'">
                 <li>
                     <f:link.page section="section-id-{page.uid}">{page.title}</f:link.page>
                 </li>
