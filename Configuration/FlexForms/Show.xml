@@ -68,7 +68,7 @@
                             <onChange>reload</onChange>
                             <config>
                                 <type>check</type>
-                                <default>0</default>
+                                <default>1</default>
                             </config>
                         </TCEforms>
                     </settings.allSubPages>

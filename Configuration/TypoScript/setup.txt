@@ -1,34 +1,47 @@
 plugin.tx_bwrkonepage {
-   view {
-      templateRootPaths {
-         100 = {$plugin.tx_bwrkonepage.view.templateRootPath}
-      }
-      layoutRootPaths {
-         100 = {$plugin.tx_bwrkonepage.view.layoutRootPath}
-      }
-      partialRootPaths {
-         100 = {$plugin.tx_bwrkonepage.view.partialRootPath}
-      }
-   }
-   settings {
-      menu = {$plugin.tx_bwrkonepage.settings.menu}
-      menuScroll = {$plugin.tx_bwrkonepage.settings.menuScroll}
-      allSubPages = {$plugin.tx_bwrkonepage.settings.allSubPages}
-      pageTitle = {$plugin.tx_bwrkonepage.settings.pageTitle}
-      pageTitleType = {$plugin.tx_bwrkonepage.settings.pageTitleType}
-      menuOffset = {$plugin.tx_bwrkonepage.settings.menuOffset}
-      menuThreshold = {$plugin.tx_bwrkonepage.settings.menuThreshold}
-      menuUpdateHash = {$plugin.tx_bwrkonepage.settings.menuUpdateHash}
-   }
+    view {
+        templateRootPaths {
+            0 = {$plugin.tx_bwrkonepage.view.templateRootPath}
+        }
+
+        layoutRootPaths {
+            0 = {$plugin.tx_bwrkonepage.view.layoutRootPath}
+        }
+
+        partialRootPaths {
+            0 = {$plugin.tx_bwrkonepage.view.partialRootPath}
+        }
+    }
+
+    settings {
+        menu = {$plugin.tx_bwrkonepage.settings.menu}
+        menuScroll = {$plugin.tx_bwrkonepage.settings.menuScroll}
+        allSubPages = {$plugin.tx_bwrkonepage.settings.allSubPages}
+        pageTitle = {$plugin.tx_bwrkonepage.settings.pageTitle}
+        pageTitleType = {$plugin.tx_bwrkonepage.settings.pageTitleType}
+        menuOffset = {$plugin.tx_bwrkonepage.settings.menuOffset}
+        menuThreshold = {$plugin.tx_bwrkonepage.settings.menuThreshold}
+        menuUpdateHash = {$plugin.tx_bwrkonepage.settings.menuUpdateHash}
+    }
 }
 
 page = PAGE
 page.includeJSFooter.bwrk_onepage = {$plugin.tx_bwrkonepage.settings.js.main}
 page.includeCSS.bwrk_onepage = {$plugin.tx_bwrkonepage.settings.css.main}
 
-#####################
-### Include Jquery?
-#####################
 [userFunc = BERGWERK\BwrkOnepage\UserFunc\Extconf::match(enableJQuery)]
-page.includeJSLibs.bwrk_onepage_jQuery = {$plugin.tx_bwrkonepage.settings.js.jQuery}
+    #####################
+    ### Include Jquery?
+    #####################
+    page.includeJSLibs.bwrk_onepage_jQuery = {$plugin.tx_bwrkonepage.settings.js.jQuery}
 [global]
+
+lib.tx_bwrkonepage.pageRendering = CONTENT
+lib.tx_bwrkonepage.pageRendering {
+    table = tt_content
+    select {
+        pidInList.data = current:1
+        orderBy = sorting
+        languageField = sys_language_uid
+    }
+}

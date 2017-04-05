@@ -28,7 +28,6 @@ namespace BERGWERK\BwrkOnepage\UserFunc;
  * @subpackage	bwrk_onepage
  ***************************************************************/
 use BERGWERK\BwrkOnepage\Utility\Configuration;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /**
  * Class Extconf

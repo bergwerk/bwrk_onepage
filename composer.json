@@ -1,10 +1,36 @@
 {
   "name": "bergwerk/bwrk-onepage",
   "type": "typo3-cms-extension",
-  "description": "One page extension for TYPO3",
   "homepage": "https://www.bergwerk.ag/",
-  "license": ["GPL-2.0+"],
-  "keywords": ["TYPO3 CMS", "onepage"],
-  "version": "3.0.15",
-  "minimum-stability":"stable"
+  "keywords": [
+    "TYPO3",
+    "extension",
+    "onepage"
+  ],
+  "support": {
+    "issues": "https://github.com/bergwerk/bwrk_onepage/issues"
+  },
+  "authors": [
+    {
+      "name": "Georg Dümmler",
+      "email": "typo3@bergwerk.ag",
+      "role": "Developer",
+      "homepage": "https://www.bergwerk.ag"
+    }
+  ],
+  "version": "3.1.0",
+  "license": "GPL-2.0+",
+  "description": "TYPO3 Onepage-Extension which allows you to use subpages as onepage layout.",
+  "require": {
+    "typo3/cms-core": "^6.2.0 || ^7.6 || ^8.0"
+  },
+  "replace": {
+    "bwrk_onepage": "self.version",
+    "typo3-ter/bwrk-onepage": "self.version"
+  },
+  "autoload": {
+    "psr-4": {
+      "BERGWERK\\BwrkOnepage\\": "Classes"
+    }
+  }
 }

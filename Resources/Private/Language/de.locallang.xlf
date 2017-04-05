@@ -40,10 +40,13 @@
 				<target>jQuery einfügen?</target>
 			</trans-unit>
 			<trans-unit id="bwrk_onepage.pageTS.hideSectionMenu">
-				<source>Verstecke diese Section im Menü</source>
+				<target>Verstecke diese Section im Menü</target>
 			</trans-unit>
 			<trans-unit id="bwrk_onepage.pageTS.hideSectionMenuYes">
-				<source>Ja</source>
+				<target>Ja</target>
+			</trans-unit>
+			<trans-unit id="bwrk_onepage.pageTS.sectionClassLabel">
+				<target>Bitte wählen ...</target>
 			</trans-unit>
 		</body>
 	</file>

@@ -1,12 +1,6 @@
-{namespace bwrk=BERGWERK\BwrkOnepage\ViewHelpers}
-
 <f:layout name="Default" />
 
-<f:section name="main">
-    <f:flashMessages renderMode="div" />
-
+<f:section name="Main">
     <f:render partial="Onepage/Menu" arguments="{settings: settings, object: object}" />
-
     <f:render partial="Onepage/Pages" arguments="{settings: settings, object: object}" />
-
 </f:section>

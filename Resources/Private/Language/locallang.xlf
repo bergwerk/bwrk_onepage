@@ -48,6 +48,9 @@
 			<trans-unit id="bwrk_onepage.pageTS.hideSectionMenuYes">
 				<source>Yes</source>
 			</trans-unit>
+			<trans-unit id="bwrk_onepage.pageTS.sectionClassLabel">
+				<source>Please choose ...</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
