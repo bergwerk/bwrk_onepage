@@ -12,7 +12,6 @@ if (!defined('TYPO3_MODE'))
 );
 
 // Typoscript
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY, 'Configuration/TypoScript/Defaults', 'BERGWERK Onepage [Defaults (optional)]');
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'BERGWERK Onepage [Viewer]');
 
 

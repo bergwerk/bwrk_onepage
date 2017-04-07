@@ -2,7 +2,9 @@
     <section{f:if(condition: settings.menu, then: ' id="section-id-{page.uid}"')}{f:if(condition: page.sectionClass, then: ' class="section-state{page.sectionClass}"')}>
         <div class="section-content">
             <f:render partial="Onepage/Title" arguments="{settings: settings, page: page}" />
-            <f:cObject typoscriptObjectPath="lib.tx_bwrkonepage.pageRendering">{page.pid}</f:cObject>
+            <f:for each="{page.contentElements}" as="contentElement">
+                <f:cObject typoscriptObjectPath="lib.tx_bwrkonepage.pageRendering">{contentElement.uid}</f:cObject>
+            </f:for>
         </div>
     </section>
 </f:for>

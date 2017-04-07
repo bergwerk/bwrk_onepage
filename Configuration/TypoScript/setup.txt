@@ -36,12 +36,9 @@ page.includeCSS.bwrk_onepage = {$plugin.tx_bwrkonepage.settings.css.main}
     page.includeJSLibs.bwrk_onepage_jQuery = {$plugin.tx_bwrkonepage.settings.js.jQuery}
 [global]
 
-lib.tx_bwrkonepage.pageRendering = CONTENT
+lib.tx_bwrkonepage.pageRendering = RECORDS
 lib.tx_bwrkonepage.pageRendering {
-    table = tt_content
-    select {
-        pidInList.data = current:1
-        orderBy = sorting
-        languageField = sys_language_uid
-    }
+    source.data = current:1
+    tables = tt_content
+    dontCheckPid = 1
 }

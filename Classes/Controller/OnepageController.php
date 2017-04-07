@@ -34,6 +34,7 @@ use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
 /**
@@ -108,11 +109,15 @@ class OnepageController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
                         $page = $this->pagesRepository->findByUid($pageId);
                         if (is_null($page)) continue;
 
+                        $contentElements = $this->contentRepository->getContentByPid($page->getUid());
+
                         $object[$i]['uid'] = $page->getUid();
                         $object[$i]['pid'] = $pageId;
                         $object[$i]['title'] = $page->getTitle();
                         $object[$i]['sectionClass'] = $page->getTxBwrkonepageSectionclass();
                         $object[$i]['hideSectionMenu'] = $page->getTxBwrkonepageHidesectionmenu();
+                        $object[$i]['contentElements'] = $contentElements;
+
                         $i++;
                     }
                 }

@@ -18,7 +18,7 @@
       "homepage": "https://www.bergwerk.ag"
     }
   ],
-  "version": "3.1.0",
+  "version": "3.1.1",
   "license": "GPL-2.0+",
   "description": "TYPO3 Onepage-Extension which allows you to use subpages as onepage layout.",
   "require": {
