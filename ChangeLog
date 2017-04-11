@@ -1,3 +1,8 @@
+3.1.2 - released 2017-04-11
+Bug fixes:
+- [6b441e4] UserFunc method called static but was not static
+
+
 3.1.1 - released 2017-04-07
 Bug fixes:
 - [2497e8a] Fix multi-language support for gridelements
