@@ -29,7 +29,7 @@ page = PAGE
 page.includeJSFooter.bwrk_onepage = {$plugin.tx_bwrkonepage.settings.js.main}
 page.includeCSS.bwrk_onepage = {$plugin.tx_bwrkonepage.settings.css.main}
 
-[userFunc = BERGWERK\BwrkOnepage\UserFunc\Extconf::match(enableJQuery)]
+[userFunc = \BERGWERK\BwrkOnepage\UserFunc\Extconf::match('enableJQuery')]
     #####################
     ### Include Jquery?
     #####################

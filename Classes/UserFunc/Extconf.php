@@ -39,15 +39,12 @@ class Extconf
      * @param string $lib
      * @return bool
      */
-    public function match($lib)
+    public static function match($lib)
     {
         $extConf = Configuration::getExtConf();
-        foreach($extConf as $confKey => $confValue)
+        if(array_key_exists($lib, $extConf))
         {
-            if($confKey == $lib && $confValue == '1')
-            {
-                return true;
-            }
+            if((bool) $extConf[$lib]) return true;
         }
         return false;
     }
