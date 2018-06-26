@@ -90,7 +90,7 @@ class OnepageController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     {
         $cObj = $this->configurationManager->getContentObject();
         $cObjData = $cObj->data;
-        $pages = $this->getPages($cObjData['uid']);
+        $pages = $this->getPages($cObjData['pid']);
 
         $cacheIdentifier = md5($cObjData['uid'] . '_' . implode(',', $pages) . $GLOBALS['TSFE']->id . $this->actionMethodName);
         $cachedHtmlOutput = $this->cacheUtility->getCache($cacheIdentifier);
