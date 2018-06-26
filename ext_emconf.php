@@ -31,22 +31,16 @@ $EM_CONF[$_EXTKEY] = array(
     'title' => 'Onepage Extension',
     'description' => 'TYPO3 Onepage-Extension which allows you to use subpages as onepage layout.',
     'category' => 'plugin',
-    'author' => 'BERGWERK [GD, MJH]',
-    'author_email' => 'typo3@bergwerk.ag',
+    'author' => 'BERGWERK',
+    'author_email' => 'technik@bergwerk.ag',
     'author_company' => 'BERGWERK Werbeagentur GmbH',
     'state' => 'stable',
-    'internal' => '',
-    'uploadfolder' => '0',
-    'createDirs' => '',
-    'clearCacheOnLoad' => 0,
-    'version' => '3.1.2',
+    'version' => '3.1.3',
     'constraints' => array(
         'depends' => array(
             'typo3' => '6.2.0-8.7.99',
         ),
-        'conflicts' => array(
-        ),
-        'suggests' => array(
-        )
+        'conflicts' => array(),
+        'suggests' => array()
     )
 );
