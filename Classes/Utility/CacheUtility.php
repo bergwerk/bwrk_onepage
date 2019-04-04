@@ -28,8 +28,8 @@ namespace BERGWERK\BwrkOnepage\Utility;
  * @subpackage	bwrk_onepage
  ***************************************************************/
 
+use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Frontend\Page\PageRepository;
 
 /**
  * Class CacheUtility
@@ -74,7 +74,7 @@ class CacheUtility extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     public function getCache ($hashVars = null )
     {
         $cacheID = $this->getCacheID(array($hashVars));
-        $data = PageRepository::getHash($cacheID);
+        $data = self::getHash($cacheID);
         if(!$data) return false;
 
         return unserialize($data);
@@ -91,7 +91,7 @@ class CacheUtility extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $lifetime = mktime(23,59,59) + 1 - time();
         $cacheID = $this->getCacheID(array($hashVars));
 
-        PageRepository::storeHash( $cacheID, serialize($data), $this->_extKey.'_cache', $lifetime );
+        self::storeHash( $cacheID, serialize($data), $this->_extKey.'_cache', $lifetime );
         return $data;
     }
 
@@ -119,6 +119,51 @@ class CacheUtility extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $hashString = join('|',array_values($hashVars)).join('|', array_keys($hashVars));
 
         return md5($hashString);
+    }
+
+    /********************************
+     *
+     * Caching and standard clauses
+     *
+     ********************************/
+
+    /**
+     * Returns data stored for the hash string in the cache "cache_hash"
+     * Can be used to retrieved a cached value, array or object
+     * Can be used from your frontend plugins if you like. It is also used to
+     * store the parsed TypoScript template structures.
+     *
+     * @param string $hash The hash-string which was used to store the data value
+     * @return mixed The "data" from the cache
+     * @see storeHash()
+     */
+    public static function getHash($hash)
+    {
+        $hashContent = null;
+        /** @var \TYPO3\CMS\Core\Cache\Frontend\FrontendInterface $contentHashCache */
+        $contentHashCache = GeneralUtility::makeInstance(CacheManager::class)->getCache('cache_hash');
+        $cacheEntry = $contentHashCache->get($hash);
+        if ($cacheEntry) {
+            $hashContent = $cacheEntry;
+        }
+        return $hashContent;
+    }
+
+    /**
+     * Stores $data in the 'cache_hash' cache with the hash key, $hash
+     * and visual/symbolic identification, $ident
+     *
+     * Can be used from your frontend plugins if you like.
+     *
+     * @param string $hash 32 bit hash string (eg. a md5 hash of a serialized array identifying the data being stored)
+     * @param mixed $data The data to store
+     * @param string $ident Is just a textual identification in order to inform about the content!
+     * @param int $lifetime The lifetime for the cache entry in seconds
+     * @see getHash()
+     */
+    public static function storeHash($hash, $data, $ident, $lifetime = 0)
+    {
+        GeneralUtility::makeInstance(CacheManager::class)->getCache('cache_hash')->set($hash, $data, ['ident_' . $ident], (int)$lifetime);
     }
 
 }
