@@ -15,6 +15,15 @@
 			<trans-unit id="bwrk_onepage.settings.pages">
 				<source>Which Pages should be shown?</source>
 			</trans-unit>
+			<trans-unit id="bwrk_onepage.settings.pagesOrdering">
+				<source>Sorting should be done with which field?</source>
+			</trans-unit>
+			<trans-unit id="bwrk_onepage.settings.pagesOrdering.sorting">
+				<source>sorting (same as page tree)</source>
+			</trans-unit>
+			<trans-unit id="bwrk_onepage.settings.pagesOrdering.uid">
+				<source>uid (chronological)</source>
+			</trans-unit>
 			<trans-unit id="bwrk_onepage.settings.menu">
 				<source>Show Menu</source>
 			</trans-unit>

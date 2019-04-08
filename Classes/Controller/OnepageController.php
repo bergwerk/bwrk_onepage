@@ -138,10 +138,11 @@ class OnepageController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     private function getPages($pageUid)
     {
         $pages = explode(',', $this->settings['pages']);
+        $sorting = $this->settings['pagesOrdering'] ? $this->settings['pagesOrdering'] : 'uid';
         if ((boolean)$this->settings['allSubPages']) {
             /** @var Pages[] $pagesArray */
             $pages = array();
-            $pagesArray = $this->pagesRepository->findByPid($pageUid);
+            $pagesArray = $this->pagesRepository->findByPid($pageUid, $sorting);
             foreach ($pagesArray as $page) {
                 $pages[] = $page->getUid();
             }

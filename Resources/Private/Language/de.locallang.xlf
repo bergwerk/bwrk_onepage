@@ -12,6 +12,15 @@
 			<trans-unit id="bwrk_onepage.settings.pages">
 				<target>Welche Seiten sollen angezeigt werden?</target>
 			</trans-unit>
+			<trans-unit id="bwrk_onepage.settings.pagesOrdering">
+				<target>Nach welchem Feld soll sortiert werden?</target>
+			</trans-unit>
+			<trans-unit id="bwrk_onepage.settings.pagesOrdering.sorting">
+				<target>sorting (selbe Reihenfolge wie im Seitenbaum)</target>
+			</trans-unit>
+			<trans-unit id="bwrk_onepage.settings.pagesOrdering.uid">
+				<target>uid (chronologisch)</target>
+			</trans-unit>
 			<trans-unit id="bwrk_onepage.settings.menu">
 				<target>Menü anzeigen?</target>
 			</trans-unit>
