@@ -1,15 +1,18 @@
 plugin.tx_bwrkonepage {
     view {
         templateRootPaths {
-            0 = {$plugin.tx_bwrkonepage.view.templateRootPath}
+            0 = EXT:bwrk_onepage/Resources/Private/Templates/
+            1 = {$plugin.tx_bwrkonepage.view.templateRootPath}
         }
 
         layoutRootPaths {
-            0 = {$plugin.tx_bwrkonepage.view.layoutRootPath}
+            0 = EXT:bwrk_onepage/Resources/Private/Layouts/
+            1 = {$plugin.tx_bwrkonepage.view.layoutRootPath}
         }
 
         partialRootPaths {
-            0 = {$plugin.tx_bwrkonepage.view.partialRootPath}
+            0 = EXT:bwrk_onepage/Resources/Private/Partials/
+            1 = {$plugin.tx_bwrkonepage.view.partialRootPath}
         }
     }
 
