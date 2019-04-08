@@ -34,11 +34,14 @@ namespace BERGWERK\BwrkOnepage\Domain\Repository;
  */
 class PagesRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 {
-    public function findByPid($pageUid)
+    public function findByPid($pageUid, $sorting)
     {
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);
-
+        $query->setOrderings([
+            // Order by Flexform selection
+            $sorting => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING
+        ]);
         $query->matching(
             $query->logicalAnd(
                 $query->equals('pid', $pageUid),

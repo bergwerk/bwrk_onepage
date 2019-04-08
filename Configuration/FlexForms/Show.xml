@@ -89,6 +89,35 @@
                             </config>
                         </TCEforms>
                     </settings.pages>
+                    <settings.pagesOrdering>
+                        <TCEforms>
+                            <label>
+                                LLL:EXT:bwrk_onepage/Resources/Private/Language/locallang.xlf:bwrk_onepage.settings.pagesOrdering
+                            </label>
+                            <displayCond>FIELD:settings.allSubPages:=:1</displayCond>
+                            <config>
+                                <type>select</type>
+                                <renderType>selectSingle</renderType>
+                                <items type="array">
+                                    <numIndex index="0" type="array">
+                                        <numIndex index="0">
+                                            LLL:EXT:bwrk_onepage/Resources/Private/Language/locallang.xlf:bwrk_onepage.settings.pagesOrdering.uid
+                                        </numIndex>
+                                        <numIndex index="1">uid</numIndex>
+                                    </numIndex>
+                                    <numIndex index="1" type="array">
+                                        <numIndex index="0">
+                                            LLL:EXT:bwrk_onepage/Resources/Private/Language/locallang.xlf:bwrk_onepage.settings.pagesOrdering.sorting
+                                        </numIndex>
+                                        <numIndex index="1">sorting</numIndex>
+                                    </numIndex>
+                                </items>
+                                <minitems>0</minitems>
+                                <maxitems>1</maxitems>
+                                <size>1</size>
+                            </config>
+                        </TCEforms>
+                    </settings.pagesOrdering>
                 </el>
             </ROOT>
         </general>
