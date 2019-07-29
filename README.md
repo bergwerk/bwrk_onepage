@@ -1,3 +1,11 @@
+# DEPRECATION NOTICE
+
+This extension is currently unmaintained, since we swapped the functionality of the extension with core features e. g. [menu processors and data processors](https://docs.typo3.org/m/typo3/reference-typoscript/9.5/en-us/ContentObjects/Fluidtemplate/Index.html#dataprocessing).
+
+**You want to maintain this extension? Write an e-mail to `technik@bergwerk.ag`.**
+
+_____
+
 # Onepage Extension
 TYPO3 Onepage-Extension which allows you to use subpages as onepage layout
 
