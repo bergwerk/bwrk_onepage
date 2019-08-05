@@ -1,11 +1,3 @@
-# DEPRECATION NOTICE
-
-This extension is currently unmaintained, since we swapped the functionality of the extension with core features e. g. [menu processors and data processors](https://docs.typo3.org/m/typo3/reference-typoscript/9.5/en-us/ContentObjects/Fluidtemplate/Index.html#dataprocessing).
-
-**You want to maintain this extension? Write an e-mail to `technik@bergwerk.ag`.**
-
-_____
-
 # Onepage Extension
 TYPO3 Onepage-Extension which allows you to use subpages as onepage layout
 
@@ -16,3 +8,15 @@ TYPO3 Onepage-Extension which allows you to use subpages as onepage layout
 4. Select the pages in the plugin you would like to have as "subpages" in your onepage
 
 [Here](https://github.com/bergwerk/bwrk_onepage/wiki) you can find the extension manual.
+
+## Authors
+
+* **[Henrik Ziegenhain](https://github.com/h3nn3s)** - *Primary Maintainer*
+* **[Bergwerk](https://github.com/bergwerk)** - *Maintenance*
+* **[Georg Dümmler](https://github.com/gerchomat)** - *Initial work*
+
+See also the list of [contributors](https://github.com/bergwerk/bwrk_onepage/contributors) who participated in this project.
+
+## Credits
+
+Big thanks to [Henrik Ziegenhain](https://github.com/h3nn3s), who agreed to take over the further development of the extension.
