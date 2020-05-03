@@ -1,6 +1,9 @@
 <?php
 namespace BERGWERK\BwrkOnepage\Domain\Model;
 
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+use TYPO3\CMS\Extbase\Annotation as Extbase;
+
     /***************************************************************
      *  Copyright notice
      *
@@ -32,27 +35,12 @@ namespace BERGWERK\BwrkOnepage\Domain\Model;
  * Class Pages
  * @package BERGWERK\BwrkOnepage\Domain\Model
  */
-class Pages extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
-
-
-    /**
-     * uid
-     * @var int
-     * @validate NotEmpty
-     */
-    protected $uid;
-
-    /**
-     * pid
-     * @var int
-     * @validate NotEmpty
-     */
-    protected $pid;
+class Pages extends AbstractEntity {
 
     /**
      * title
      * @var string
-     * @validate NotEmpty
+     * @Extbase\Validate("NotEmpty")
      */
     protected $title;
 
@@ -65,24 +53,6 @@ class Pages extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
      * @var int
      */
     protected $txBwrkonepageHidesectionmenu;
-
-    /**
-     * Returns the uid
-     *
-     * @return int $uid
-     */
-    public function getUid() {
-        return $this->uid;
-    }
-
-    /**
-     * Returns the pid
-     *
-     * @return int $pid
-     */
-    public function getPid() {
-        return $this->pid;
-    }
 
     /**
      * Returns the title
@@ -124,8 +94,4 @@ class Pages extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
     {
         $this->txBwrkonepageHidesectionmenu = $txBwrkonepageHidesectionmenu;
     }
-
-
-
 }
-?>

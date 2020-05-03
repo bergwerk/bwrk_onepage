@@ -1,15 +1,16 @@
 <?php
+defined('TYPO3_MODE') or die();
 
-if (!defined('TYPO3_MODE'))
-{
-    die('Access denied.');
-}
+$boot = function () {
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+        'BERGWERK.bwrk_onepage',
+        'Pi1',
+        [
+            'Onepage' => 'show'
+        ],
+        []
+    );
+};
 
-\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-    'BERGWERK.' . $_EXTKEY,
-    'Pi1',
-    array(
-        'Onepage' => 'show'
-    ),
-    array()
-);
+$boot();
+unset($boot);

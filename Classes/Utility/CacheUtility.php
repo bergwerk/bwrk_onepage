@@ -29,16 +29,24 @@ namespace BERGWERK\BwrkOnepage\Utility;
  ***************************************************************/
 
 use TYPO3\CMS\Core\Cache\CacheManager;
+use TYPO3\CMS\Core\Cache\Exception\NoSuchCacheException;
+use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
+use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3\CMS\Extbase\Mvc\Request;
+use TYPO3\CMS\Extbase\Object\ObjectManager;
 
 /**
  * Class CacheUtility
  * @package BERGWERK\BwrkOnepage\Utility
  */
-class CacheUtility extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+class CacheUtility extends ActionController
 {
     /**
-     * @var \TYPO3\CMS\Extbase\Configuration\ConfigurationManager
+     * @var ConfigurationManager
      */
     protected $_configurationManager;
 
@@ -48,7 +56,7 @@ class CacheUtility extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     protected $_extKey;
 
     /**
-     * @var \TYPO3\CMS\Extbase\Mvc\Request
+     * @var Request
      */
     protected $_request;
 
@@ -57,19 +65,19 @@ class CacheUtility extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      */
     public function __construct()
     {
-        parent::__construct();
+        $this->_extKey = GeneralUtility::camelCaseToLowerCaseUnderscored('BwrkOnepage');
 
-        $this->_extKey = GeneralUtility::camelCaseToLowerCaseUnderscored($this->extensionName);
+        $this->_request = GeneralUtility::makeInstance(Request::class);
+        $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
 
-        $this->_request = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Mvc\\Request');
-        $objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
-
-        $this->_configurationManager = $objectManager->get('TYPO3\\CMS\\Extbase\\Configuration\\ConfigurationManager');
+        $this->_configurationManager = $objectManager->get(ConfigurationManager::class);
     }
 
     /**
      * @param null $hashVars
      * @return bool|mixed
+     * @throws NoSuchCacheException
+     * @throws AspectNotFoundException
      */
     public function getCache ($hashVars = null )
     {
@@ -98,12 +106,15 @@ class CacheUtility extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     /**
      * @param null $hashVars
      * @return string
+     * @throws AspectNotFoundException
      */
     private function getCacheID ($hashVars = null )
     {
+        $this->extKey = GeneralUtility::camelCaseToLowerCaseUnderscored('BwrkOnepage');
+        $languageAspect = GeneralUtility::makeInstance(Context::class)->getAspect('language');
         $additionalHashVars = array(
             'pid'       => $GLOBALS['TSFE']->id,
-            'lang'      => $GLOBALS['TSFE']->sys_language_uid,
+            'lang'      => $languageAspect->getId(),
             'uid'       => $this->_configurationManager->getContentObject()->data['uid']
         );
 
@@ -116,7 +127,7 @@ class CacheUtility extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
         $hashVars = array_merge($additionalHashVars, $hashVars);
 
-        $hashString = join('|',array_values($hashVars)).join('|', array_keys($hashVars));
+        $hashString = implode('|', array_values($hashVars)).implode('|', array_keys($hashVars));
 
         return md5($hashString);
     }
@@ -135,12 +146,13 @@ class CacheUtility extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      *
      * @param string $hash The hash-string which was used to store the data value
      * @return mixed The "data" from the cache
+     * @throws NoSuchCacheException
      * @see storeHash()
      */
     public static function getHash($hash)
     {
         $hashContent = null;
-        /** @var \TYPO3\CMS\Core\Cache\Frontend\FrontendInterface $contentHashCache */
+        /** @var FrontendInterface $contentHashCache */
         $contentHashCache = GeneralUtility::makeInstance(CacheManager::class)->getCache('cache_hash');
         $cacheEntry = $contentHashCache->get($hash);
         if ($cacheEntry) {
@@ -159,6 +171,7 @@ class CacheUtility extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      * @param mixed $data The data to store
      * @param string $ident Is just a textual identification in order to inform about the content!
      * @param int $lifetime The lifetime for the cache entry in seconds
+     * @throws NoSuchCacheException
      * @see getHash()
      */
     public static function storeHash($hash, $data, $ident, $lifetime = 0)

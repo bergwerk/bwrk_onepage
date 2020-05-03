@@ -17,15 +17,19 @@
       "homepage": "https://www.bergwerk.ag"
     }
   ],
-  "version": "3.2.0",
   "license": "GPL-2.0+",
   "description": "TYPO3 Onepage-Extension which allows you to use subpages as onepage layout.",
   "require": {
-    "typo3/cms-core": "^7.6 || ^8.0 || ^9.5"
+    "typo3/cms-core": "^9.5 || ^10.4"
   },
   "replace": {
-    "bwrk_onepage": "self.version",
+    "bwrk-onepage": "self.version",
     "typo3-ter/bwrk-onepage": "self.version"
+  },
+  "extra": {
+    "typo3/cms": {
+      "extension-key": "bwrk_onepage"
+    }
   },
   "autoload": {
     "psr-4": {
