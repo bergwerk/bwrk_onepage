@@ -1,32 +1,21 @@
 <?php
-namespace BERGWERK\BwrkOnepage\Controller;
 
-/***************************************************************
- *  Copyright notice
+declare(strict_types=1);
+
+/*
+ * This file is part of the TYPO3 CMS project.
  *
- *  (c) 2015 Georg Dümmler <gd@bergwerk.ag>
- *  All rights reserved
+ * It is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License, either version 2
+ * of the License, or any later version.
  *
- *  This script is part of the TYPO3 project. The TYPO3 project is
- *  free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
  *
- *  The GNU General Public License can be found at
- *  http://www.gnu.org/copyleft/gpl.html.
- *
- *  This script is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  This copyright notice MUST APPEAR in all copies of the script!
- *
- * @author    Georg Dümmler <gd@bergwerk.ag>
- * @package    TYPO3
- * @subpackage    bwrk_onepage
- ***************************************************************/
+ * The TYPO3 project - inspiring people to share!
+ */
+
+namespace BERGWERK\BwrkOnepage\Controller;
 
 use BERGWERK\BwrkOnepage\Domain\Model\Pages;
 use BERGWERK\BwrkOnepage\Domain\Repository\ContentRepository;
@@ -95,16 +84,18 @@ class OnepageController extends ActionController
         $cObjData = $cObj->data;
         $pages = $this->getPages($cObjData['pid']);
 
-        $cacheIdentifier = md5($cObjData['uid'] . '_' . implode(',', $pages) . $GLOBALS['TSFE']->id . $this->actionMethodName);
+        $cacheIdentifier = md5(
+            $cObjData['uid'] . '_' . implode(',', $pages) . $GLOBALS['TSFE']->id . $this->actionMethodName
+        );
         $cachedHtmlOutput = $this->cacheUtility->getCache($cacheIdentifier);
 
         // deactivate cache on develope mode
-        if(Environment::getContext()->isDevelopment()) {
+        if (Environment::getContext()->isDevelopment()) {
             $cachedHtmlOutput = false;
         }
 
         if (!$cachedHtmlOutput) {
-            $object = array();
+            $object = [];
 
             if (count($pages) > 0) {
                 if ($pages[0] != '') {
@@ -148,7 +139,7 @@ class OnepageController extends ActionController
         $sorting = $this->settings['pagesOrdering'] ?: 'uid';
         if ((boolean)$this->settings['allSubPages']) {
             /** @var Pages[] $pagesArray */
-            $pages = array();
+            $pages = [];
             $pagesArray = $this->pagesRepository->findByPid($pageUid, $sorting);
             foreach ($pagesArray as $page) {
                 $pages[] = $page->getUid();
