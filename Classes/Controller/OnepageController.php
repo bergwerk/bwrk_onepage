@@ -29,19 +29,20 @@ namespace BERGWERK\BwrkOnepage\Controller;
  ***************************************************************/
 
 use BERGWERK\BwrkOnepage\Domain\Model\Pages;
-use TYPO3\CMS\Core\Messaging\AbstractMessage;
-use TYPO3\CMS\Core\Messaging\FlashMessage;
-use TYPO3\CMS\Core\Page\PageRenderer;
-use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use BERGWERK\BwrkOnepage\Domain\Repository\ContentRepository;
+use BERGWERK\BwrkOnepage\Domain\Repository\PagesRepository;
+use BERGWERK\BwrkOnepage\Utility\CacheUtility;
+use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
+use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
-use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
 /**
  * Class OnepageController
  * @package BERGWERK\BwrkOnepage\Controller
  */
-class OnepageController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+class OnepageController extends ActionController
 {
     /**
      * @var string
@@ -54,20 +55,20 @@ class OnepageController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     protected $languageUid;
 
     /**
-     * @var \BERGWERK\BwrkOnepage\Domain\Repository\ContentRepository
-     * @inject
+     * @var ContentRepository
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $contentRepository;
 
     /**
-     * @var \BERGWERK\BwrkOnepage\Domain\Repository\PagesRepository
-     * @inject
+     * @var PagesRepository
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $pagesRepository;
 
     /**
-     * @var \BERGWERK\BwrkOnepage\Utility\CacheUtility
-     * @inject
+     * @var CacheUtility
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $cacheUtility;
 
@@ -78,12 +79,14 @@ class OnepageController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      * common.
      *
      * @return void
+     * @throws AspectNotFoundException
      * @api
      */
     protected function initializeAction()
     {
-        $this->extKey = GeneralUtility::camelCaseToLowerCaseUnderscored($this->extensionName);
-        $this->languageUid = $GLOBALS['TSFE']->sys_language_uid;
+        $this->extKey = GeneralUtility::camelCaseToLowerCaseUnderscored('BwrkOnepage');
+        $languageAspect = GeneralUtility::makeInstance(Context::class)->getAspect('language');
+        $this->languageUid = $languageAspect->getId();
     }
 
     public function showAction()
@@ -96,18 +99,22 @@ class OnepageController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         $cachedHtmlOutput = $this->cacheUtility->getCache($cacheIdentifier);
 
         // deactivate cache on develope mode
-        if(GeneralUtility::getApplicationContext()->isDevelopment()) $cachedHtmlOutput = false;
+        if(Environment::getContext()->isDevelopment()) {
+            $cachedHtmlOutput = false;
+        }
 
         if (!$cachedHtmlOutput) {
             $object = array();
 
             if (count($pages) > 0) {
-                if (strlen($pages[0]) > 0) {
+                if ($pages[0] != '') {
                     $i = 0;
                     foreach ($pages as $pageId) {
                         /** @var Pages $page */
                         $page = $this->pagesRepository->findByUid($pageId);
-                        if (is_null($page)) continue;
+                        if (is_null($page)) {
+                            continue;
+                        }
 
                         $contentElements = $this->contentRepository->getContentByPid($page->getUid());
 
@@ -138,7 +145,7 @@ class OnepageController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     private function getPages($pageUid)
     {
         $pages = explode(',', $this->settings['pages']);
-        $sorting = $this->settings['pagesOrdering'] ? $this->settings['pagesOrdering'] : 'uid';
+        $sorting = $this->settings['pagesOrdering'] ?: 'uid';
         if ((boolean)$this->settings['allSubPages']) {
             /** @var Pages[] $pagesArray */
             $pages = array();

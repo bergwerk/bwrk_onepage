@@ -1,6 +1,9 @@
 <?php
 namespace BERGWERK\BwrkOnepage\Domain\Model;
 
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+use TYPO3\CMS\Extbase\Annotation as Extbase;
+
 /***************************************************************
  *  Copyright notice
  *
@@ -32,34 +35,19 @@ namespace BERGWERK\BwrkOnepage\Domain\Model;
  * Class Content
  * @package BERGWERK\BwrkOnepage\Domain\Model
  */
-class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
-
-
-    /**
-     * uid
-     * @var int
-     * @validate NotEmpty
-     */
-    protected $uid;
-
-    /**
-     * pid
-     * @var int
-     * @validate NotEmpty
-     */
-    protected $pid;
+class Content extends AbstractEntity {
 
     /**
      * header
      * @var string
-     * @validate NotEmpty
+     * @Extbase\Validate("NotEmpty")
      */
     protected $header;
 
     /**
      * sorting
      * @var int
-     * @validate NotEmpty
+     * @Extbase\Validate("NotEmpty")
      */
     protected $sorting;
 
@@ -70,15 +58,6 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
      */
     protected $_localizedUid;
 
-    /**
-     * Returns the uid
-     *
-     * @return int $uid
-     */
-    public function getUid() {
-        return $this->uid;
-    }
-
 
     /**
      * Returns the _localizedUid
@@ -87,15 +66,6 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
      */
     public function get_localizedUid() {
         return $this->_localizedUid;
-    }
-
-    /**
-     * Returns the pid
-     *
-     * @return int $pid
-     */
-    public function getPid() {
-        return $this->pid;
     }
 
     /**

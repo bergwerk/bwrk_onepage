@@ -28,12 +28,16 @@ namespace BERGWERK\BwrkOnepage\Domain\Repository;
  * @subpackage	bwrk_onepage
  ***************************************************************/
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Extbase\Persistence\Generic\QuerySettingsInterface;
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
+use TYPO3\CMS\Extbase\Persistence\Repository;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /**
  * Class ContentRepository
  * @package BERGWERK\BwrkOnepage\Domain\Repository
  */
-class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
+class ContentRepository extends Repository
 {
 
     /**
@@ -42,16 +46,17 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * @return void
      * @see \TYPO3\CMS\Extbase\Persistence\Repository::initializeObject()
      */
-    public function initializeObject() {
-        /** @var \TYPO3\CMS\Extbase\Persistence\Generic\QuerySettingsInterface $querySettings */
-        $querySettings = $this->objectManager->get('TYPO3\CMS\Extbase\Persistence\Generic\QuerySettingsInterface');
+    public function initializeObject(): void
+    {
+        /** @var QuerySettingsInterface $querySettings */
+        $querySettings = $this->objectManager->get(QuerySettingsInterface::class);
         $querySettings->setRespectStoragePage(FALSE);
         $this->setDefaultQuerySettings($querySettings);
     }
 
     /**
      * @param $pid
-     * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+     * @return array|QueryResultInterface
      */
     public function getContentByPid($pid)
     {
@@ -62,15 +67,11 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
             $query->equals("pid", $pid)
         );
 
-        if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('tx_gridelements')) {
-            $constraints[] = $query->equals("tx_gridelements_container", 0);
+        if (ExtensionManagementUtility::isLoaded('gridelements')) {
+            $constraints[] = $query->equals('tx_gridelements_container', 0);
         }
-        if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('gridelements')) {
-            $constraints[] = $query->equals("tx_gridelements_container", 0);
-        }
-
-        if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('flux')) {
-            $constraints[] = $query->equals("tx_flux_parent", 0);
+        if (ExtensionManagementUtility::isLoaded('flux')) {
+            $constraints[] = $query->equals('tx_flux_parent', 0);
         }
 
         $query->matching(
@@ -84,14 +85,14 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 
     /**
      * @param $pid
-     * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+     * @return array|QueryResultInterface
      */
     public function findByPid($pid)
     {
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(FALSE);
         $query->matching(
-            $query->equals("pid", $pid)
+            $query->equals('pid', $pid)
         );
         return $query->execute();
     }

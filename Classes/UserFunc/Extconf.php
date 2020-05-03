@@ -28,6 +28,7 @@ namespace BERGWERK\BwrkOnepage\UserFunc;
  * @subpackage	bwrk_onepage
  ***************************************************************/
 use BERGWERK\BwrkOnepage\Utility\Configuration;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /**
  * Class Extconf
@@ -42,6 +43,7 @@ class Extconf
     public static function match($lib)
     {
         $extConf = Configuration::getExtConf();
+        DebuggerUtility::var_dump($extConf);
         if(array_key_exists($lib, $extConf))
         {
             if((bool) $extConf[$lib]) return true;

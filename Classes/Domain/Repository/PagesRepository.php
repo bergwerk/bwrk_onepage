@@ -1,6 +1,9 @@
 <?php
 namespace BERGWERK\BwrkOnepage\Domain\Repository;
 
+use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+use TYPO3\CMS\Extbase\Persistence\Repository;
+
 /***************************************************************
  *  Copyright notice
  *
@@ -32,7 +35,7 @@ namespace BERGWERK\BwrkOnepage\Domain\Repository;
  * Class PagesRepository
  * @package BERGWERK\BwrkOnepage\Domain\Repository
  */
-class PagesRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
+class PagesRepository extends Repository
 {
     public function findByPid($pageUid, $sorting)
     {
@@ -40,7 +43,7 @@ class PagesRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         $query->getQuerySettings()->setRespectStoragePage(false);
         $query->setOrderings([
             // Order by Flexform selection
-            $sorting => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING
+            $sorting => QueryInterface::ORDER_ASCENDING
         ]);
         $query->matching(
             $query->logicalAnd(
