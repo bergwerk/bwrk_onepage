@@ -22,12 +22,12 @@
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  *
- * @author	Georg Dümmler <gd@bergwerk.ag>
- * @package	TYPO3
- * @subpackage	bwrk_onepage
+ * @author    Georg Dümmler <gd@bergwerk.ag>
+ * @package    TYPO3
+ * @subpackage    bwrk_onepage
  ***************************************************************/
 
-$EM_CONF[$_EXTKEY] = array(
+$EM_CONF[$_EXTKEY] = [
     'title' => 'Onepage Extension',
     'description' => 'TYPO3 Onepage-Extension which allows you to use subpages as onepage layout.',
     'category' => 'plugin',
@@ -36,11 +36,11 @@ $EM_CONF[$_EXTKEY] = array(
     'author_company' => 'BERGWERK Werbeagentur GmbH',
     'state' => 'stable',
     'version' => '4.0.0',
-    'constraints' => array(
-        'depends' => array(
+    'constraints' => [
+        'depends' => [
             'typo3' => '9.5.0-10.4.99',
-        ),
-        'conflicts' => array(),
-        'suggests' => array()
-    )
-);
+        ],
+        'conflicts' => [],
+        'suggests' => []
+    ]
+];

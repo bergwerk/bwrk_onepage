@@ -1,32 +1,21 @@
 <?php
-namespace BERGWERK\BwrkOnepage\Utility;
 
-/***************************************************************
- *  Copyright notice
+declare(strict_types=1);
+
+/*
+ * This file is part of the TYPO3 CMS project.
  *
- *  (c) 2016 Georg Dümmler <gd@bergwerk.ag>
- *  All rights reserved
+ * It is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License, either version 2
+ * of the License, or any later version.
  *
- *  This script is part of the TYPO3 project. The TYPO3 project is
- *  free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
  *
- *  The GNU General Public License can be found at
- *  http://www.gnu.org/copyleft/gpl.html.
- *
- *  This script is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  This copyright notice MUST APPEAR in all copies of the script!
- *
- * @author	Georg Dümmler <gd@bergwerk.ag>
- * @package	TYPO3
- * @subpackage	bwrk_onepage
- ***************************************************************/
+ * The TYPO3 project - inspiring people to share!
+ */
+
+namespace BERGWERK\BwrkOnepage\Utility;
 
 use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\Cache\Exception\NoSuchCacheException;
@@ -79,11 +68,13 @@ class CacheUtility extends ActionController
      * @throws NoSuchCacheException
      * @throws AspectNotFoundException
      */
-    public function getCache ($hashVars = null )
+    public function getCache($hashVars = null)
     {
-        $cacheID = $this->getCacheID(array($hashVars));
+        $cacheID = $this->getCacheID([$hashVars]);
         $data = self::getHash($cacheID);
-        if(!$data) return false;
+        if (!$data) {
+            return false;
+        }
 
         return unserialize($data);
     }
@@ -94,12 +85,12 @@ class CacheUtility extends ActionController
      * @param null $hashVars
      * @return null
      */
-    public function setCache ($data = null, $hashVars = null )
+    public function setCache($data = null, $hashVars = null)
     {
-        $lifetime = mktime(23,59,59) + 1 - time();
-        $cacheID = $this->getCacheID(array($hashVars));
+        $lifetime = mktime(23, 59, 59) + 1 - time();
+        $cacheID = $this->getCacheID([$hashVars]);
 
-        self::storeHash( $cacheID, serialize($data), $this->_extKey.'_cache', $lifetime );
+        self::storeHash($cacheID, serialize($data), $this->_extKey . '_cache', $lifetime);
         return $data;
     }
 
@@ -108,18 +99,17 @@ class CacheUtility extends ActionController
      * @return string
      * @throws AspectNotFoundException
      */
-    private function getCacheID ($hashVars = null )
+    private function getCacheID($hashVars = null)
     {
         $this->extKey = GeneralUtility::camelCaseToLowerCaseUnderscored('BwrkOnepage');
         $languageAspect = GeneralUtility::makeInstance(Context::class)->getAspect('language');
-        $additionalHashVars = array(
-            'pid'       => $GLOBALS['TSFE']->id,
-            'lang'      => $languageAspect->getId(),
-            'uid'       => $this->_configurationManager->getContentObject()->data['uid']
-        );
+        $additionalHashVars = [
+            'pid' => $GLOBALS['TSFE']->id,
+            'lang' => $languageAspect->getId(),
+            'uid' => $this->_configurationManager->getContentObject()->data['uid']
+        ];
 
-        if(!is_null($GLOBALS['TSFE']->fe_user->user))
-        {
+        if (!is_null($GLOBALS['TSFE']->fe_user->user)) {
             $additionalHashVars[] = $GLOBALS['TSFE']->fe_user->user['ses_id'];
         }
 
@@ -127,7 +117,7 @@ class CacheUtility extends ActionController
 
         $hashVars = array_merge($additionalHashVars, $hashVars);
 
-        $hashString = implode('|', array_values($hashVars)).implode('|', array_keys($hashVars));
+        $hashString = implode('|', array_values($hashVars)) . implode('|', array_keys($hashVars));
 
         return md5($hashString);
     }
@@ -176,7 +166,12 @@ class CacheUtility extends ActionController
      */
     public static function storeHash($hash, $data, $ident, $lifetime = 0)
     {
-        GeneralUtility::makeInstance(CacheManager::class)->getCache('cache_hash')->set($hash, $data, ['ident_' . $ident], (int)$lifetime);
+        GeneralUtility::makeInstance(CacheManager::class)->getCache('cache_hash')->set(
+            $hash,
+            $data,
+            ['ident_' . $ident],
+            (int)$lifetime
+        );
     }
 
 }
