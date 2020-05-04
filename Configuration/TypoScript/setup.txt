@@ -32,13 +32,6 @@ page = PAGE
 page.includeJSFooter.bwrk_onepage = {$plugin.tx_bwrkonepage.settings.js.main}
 page.includeCSS.bwrk_onepage = {$plugin.tx_bwrkonepage.settings.css.main}
 
-[userFunc = \BERGWERK\BwrkOnepage\UserFunc\Extconf::match('enableJQuery')]
-    #####################
-    ### Include Jquery?
-    #####################
-    page.includeJSLibs.bwrk_onepage_jQuery = {$plugin.tx_bwrkonepage.settings.js.jQuery}
-[global]
-
 lib.tx_bwrkonepage.pageRendering = RECORDS
 lib.tx_bwrkonepage.pageRendering {
     source.data = current:1
