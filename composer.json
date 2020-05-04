@@ -1,29 +1,13 @@
 {
   "name": "bergwerk/bwrk-onepage",
   "type": "typo3-cms-extension",
-  "keywords": [
-    "TYPO3",
-    "extension",
-    "onepage"
-  ],
-  "support": {
-    "issues": "https://github.com/bergwerk/bwrk_onepage/issues"
-  },
-  "homepage": "https://www.bergwerk.ag/",
-  "authors": [
-    {
-      "name": "BERGWERK",
-      "role": "Developer",
-      "homepage": "https://www.bergwerk.ag"
-    }
-  ],
-  "license": "GPL-2.0+",
   "description": "TYPO3 Onepage-Extension which allows you to use subpages as onepage layout.",
+  "license": "GPL-2.0-or-later",
   "require": {
     "typo3/cms-core": "^9.5 || ^10.4"
   },
   "replace": {
-    "bwrk-onepage": "self.version",
+    "bergwerk/bwrk-onepage": "self.version",
     "typo3-ter/bwrk-onepage": "self.version"
   },
   "extra": {
@@ -35,5 +19,27 @@
     "psr-4": {
       "BERGWERK\\BwrkOnepage\\": "Classes"
     }
-  }
+  },
+  "keywords": [
+    "TYPO3",
+    "extension",
+    "onepage"
+  ],
+  "support": {
+    "issues": "https://github.com/bergwerk/bwrk_onepage/issues"
+  },
+  "authors": [
+    {
+      "name": "Henrik Ziegenhain",
+      "role": "Primary Maintainer",
+      "email": "info@hziegenhain.de",
+      "homepage": "https://www.hziegenhain.de"
+    },
+    {
+      "name": "BERGWERK",
+      "role": "Maintenance + Initial work",
+      "homepage": "https://www.bergwerk.ag"
+    }
+  ]
+
 }
