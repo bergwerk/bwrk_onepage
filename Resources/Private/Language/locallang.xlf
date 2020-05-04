@@ -48,9 +48,6 @@
 			<trans-unit id="bwrk_onepage.settings.menuSticky">
 				<source>Sticky</source>
 			</trans-unit>
-			<trans-unit id="extConf.feature.enablejQuery">
-				<source>Include jQuery?</source>
-			</trans-unit>
 			<trans-unit id="bwrk_onepage.pageTS.hideSectionMenuLabel">
 				<source>Hide Section in Menu</source>
 			</trans-unit>

@@ -45,9 +45,6 @@
 			<trans-unit id="bwrk_onepage.settings.menuSticky">
 				<target>Menü oben andocken</target>
 			</trans-unit>
-			<trans-unit id="extConf.feature.enablejQuery">
-				<target>jQuery einfügen?</target>
-			</trans-unit>
 			<trans-unit id="bwrk_onepage.pageTS.hideSectionMenu">
 				<target>Verstecke diese Section im Menü</target>
 			</trans-unit>
