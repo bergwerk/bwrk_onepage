@@ -135,7 +135,9 @@ class OnepageController extends ActionController
 
     private function getPages($pageUid)
     {
-        $pages = explode(',', $this->settings['pages']);
+        if ($this->settings['pages']) {
+            $pages = explode(',', $this->settings['pages']);
+        }
         $sorting = $this->settings['pagesOrdering'] ?: 'uid';
         if ((boolean)$this->settings['allSubPages']) {
             /** @var Pages[] $pagesArray */
