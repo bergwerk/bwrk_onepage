@@ -45,21 +45,48 @@ class OnepageController extends ActionController
 
     /**
      * @var ContentRepository
-     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $contentRepository;
 
     /**
      * @var PagesRepository
-     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $pagesRepository;
 
     /**
      * @var CacheUtility
-     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $cacheUtility;
+
+    /**
+     * Inject a content repository to enable DI
+     *
+     * @param ContentRepository $contentRepository
+     */
+    public function injectContentRepository(ContentRepository $contentRepository)
+    {
+        $this->contentRepository = $contentRepository;
+    }
+
+    /**
+     * Inject a page repository to enable DI
+     *
+     * @param PagesRepository $pagesRepository
+     */
+    public function injectPagesRepository(PagesRepository $pagesRepository)
+    {
+        $this->pagesRepository = $pagesRepository;
+    }
+
+    /**
+     * Inject CacheUtility to enable DI
+     *
+     * @param CacheUtility $cacheUtility
+     */
+    public function injectCacheUtility(CacheUtility $cacheUtility)
+    {
+        $this->cacheUtility = $cacheUtility;
+    }
 
     /**
      * Initializes the controller before invoking an action method.
