@@ -60,6 +60,9 @@ class ContentRepository extends Repository
         if (ExtensionManagementUtility::isLoaded('gridelements')) {
             $constraints[] = $query->equals('tx_gridelements_container', 0);
         }
+        if (ExtensionManagementUtility::isLoaded('container')) {
+            $constraints[] = $query->equals('tx_container_parent', 0);
+        }
         if (ExtensionManagementUtility::isLoaded('flux')) {
             $constraints[] = $query->equals('tx_flux_parent', 0);
         }
