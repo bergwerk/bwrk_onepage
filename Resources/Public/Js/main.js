@@ -258,7 +258,7 @@ $(document).ready(function () {
     });
 });
 
-$(window).load(function () {
+$(window).on('load', function(){
     bwrkOnepageNav.each(function () {
         var self = $(this);
         var dataSticky = self.attr('data-sticky');
