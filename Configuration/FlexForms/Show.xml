@@ -30,6 +30,7 @@
                             <displayCond>FIELD:settings.pageTitle:=:1</displayCond>
                             <config>
                                 <type>select</type>
+                                <renderType>selectSingle</renderType>
                                 <items type="array">
                                     <numIndex index="0" type="array">
                                         <numIndex index="1">1</numIndex>
