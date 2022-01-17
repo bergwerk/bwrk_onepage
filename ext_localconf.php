@@ -3,10 +3,10 @@ defined('TYPO3_MODE') or die();
 
 $boot = function () {
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-        'BERGWERK.bwrk_onepage',
+        'BwrkOnepage',
         'Pi1',
         [
-            'Onepage' => 'show'
+            \BERGWERK\BwrkOnepage\Controller\OnepageController::class => 'show'
         ],
         []
     );

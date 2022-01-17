@@ -65,7 +65,7 @@ class Pages extends AbstractEntity
     /**
      * @param int $txBwrkonepageSectionclass
      */
-    public function setTxBwrkonepageSectionclass($txBwrkonepageSectionclass)
+    public function setTxBwrkonepageSectionclass($txBwrkonepageSectionclass): void
     {
         $this->txBwrkonepageSectionclass = $txBwrkonepageSectionclass;
     }
@@ -73,7 +73,7 @@ class Pages extends AbstractEntity
     /**
      * @return int
      */
-    public function getTxBwrkonepageHidesectionmenu()
+    public function getTxBwrkonepageHidesectionmenu(): int
     {
         return $this->txBwrkonepageHidesectionmenu;
     }
@@ -81,7 +81,7 @@ class Pages extends AbstractEntity
     /**
      * @param int $txBwrkonepageHidesectionmenu
      */
-    public function setTxBwrkonepageHidesectionclass($txBwrkonepageHidesectionmenu)
+    public function setTxBwrkonepageHidesectionclass($txBwrkonepageHidesectionmenu): void
     {
         $this->txBwrkonepageHidesectionmenu = $txBwrkonepageHidesectionmenu;
     }

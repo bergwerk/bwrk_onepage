@@ -35,10 +35,10 @@ $EM_CONF[$_EXTKEY] = [
     'author_email' => 'technik@bergwerk.ag',
     'author_company' => 'BERGWERK Werbeagentur GmbH',
     'state' => 'stable',
-    'version' => '4.0.3',
+    'version' => '5.0.0',
     'constraints' => [
         'depends' => [
-            'typo3' => '9.5.0-10.4.99',
+            'typo3' => '10.4.0-11.5.99',
         ],
         'conflicts' => [],
         'suggests' => []

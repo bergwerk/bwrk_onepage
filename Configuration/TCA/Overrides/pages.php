@@ -40,7 +40,7 @@ $tmp_extpages_columns = [
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
     'pages',
     '--div--;BERGWERK Onepage,tx_bwrkonepage_sectionclass,tx_bwrkonepage_hidesectionmenu',
-    1
+    '1'
 );
 
 $GLOBALS['TCA']['pages_language_overlay']['interface']['showRecordFieldList'] .= ',tx_bwrkonepage_sectionclass,tx_bwrkonepage_hidesectionmenu';

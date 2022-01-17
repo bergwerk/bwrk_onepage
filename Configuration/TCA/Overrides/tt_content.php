@@ -2,7 +2,7 @@
 defined('TYPO3_MODE') or die();
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-    'BERGWERK.bwrk_onepage',
+    'BwrkOnepage',
     'Pi1',
     'BERGWERK Onepage Viewer'
 );

@@ -45,7 +45,7 @@ class ContentRepository extends Repository
     }
 
     /**
-     * @param $pid
+     * @param int $pid
      * @return array|QueryResultInterface
      */
     public function getContentByPid($pid)
@@ -77,7 +77,7 @@ class ContentRepository extends Repository
     }
 
     /**
-     * @param $pid
+     * @param int $pid
      * @return array|QueryResultInterface
      */
     public function findByPid($pid)

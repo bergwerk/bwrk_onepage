@@ -17,7 +17,9 @@ declare(strict_types=1);
 
 namespace BERGWERK\BwrkOnepage\Domain\Repository;
 
+use TYPO3\CMS\Extbase\Persistence\Generic\QueryResult;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
 /**
@@ -26,6 +28,11 @@ use TYPO3\CMS\Extbase\Persistence\Repository;
  */
 class PagesRepository extends Repository
 {
+    /**
+     * @param int $pageUid
+     * @param string $sorting
+     * @return array|QueryResultInterface
+     */
     public function findByPid($pageUid, $sorting)
     {
         $query = $this->createQuery();
@@ -36,11 +43,12 @@ class PagesRepository extends Repository
                 $sorting => QueryInterface::ORDER_ASCENDING
             ]
         );
+        $constraints = [
+            $query->equals('pid', $pageUid),
+            $query->equals('doktype', 1)
+        ];
         $query->matching(
-            $query->logicalAnd(
-                $query->equals('pid', $pageUid),
-                $query->equals('doktype', 1)
-            )
+            $query->logicalAnd($constraints)
         );
         return $query->execute();
     }
