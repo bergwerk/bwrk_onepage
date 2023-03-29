@@ -65,6 +65,7 @@ class ContentRepository extends Repository
         }
         if (ExtensionManagementUtility::isLoaded('flux')) {
             $constraints[] = $query->equals('tx_flux_parent', 0);
+            $constraints[] = $query->lessThan('colpos', 1000);
         }
 
         $query->matching(
