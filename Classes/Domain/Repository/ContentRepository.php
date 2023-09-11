@@ -54,9 +54,7 @@ class ContentRepository extends Repository
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);
 
-        $constraint = $query->logicalAnd(
-            $query->equals("pid", $pid),
-        );
+        $constraint = $query->equals("pid", $pid);
 
         if (ExtensionManagementUtility::isLoaded('gridelements')) {
             $constraint = $query->logicalAnd(
