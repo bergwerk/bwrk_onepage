@@ -43,12 +43,11 @@ class PagesRepository extends Repository
                 $sorting => QueryInterface::ORDER_ASCENDING
             ]
         );
-        $constraints = [
-            $query->equals('pid', $pageUid),
-            $query->equals('doktype', 1)
-        ];
         $query->matching(
-            $query->logicalAnd($constraints)
+            $query->logicalAnd(
+                $query->equals('pid', $pageUid),
+                $query->equals('doktype', 1)
+            )
         );
         return $query->execute();
     }

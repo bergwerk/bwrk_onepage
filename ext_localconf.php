@@ -1,5 +1,5 @@
 <?php
-defined('TYPO3_MODE') or die();
+defined('TYPO3') or die();
 
 $boot = function () {
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(

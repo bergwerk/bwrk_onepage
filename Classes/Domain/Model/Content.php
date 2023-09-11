@@ -42,17 +42,17 @@ class Content extends AbstractEntity
     protected $sorting;
 
     /**
-     * _localizedUid
+     * @var int<0, max>|null The uid of the localized record. Holds the uid of the record in default language (the translationOrigin).
      *
-     * @var string
+     * @internal
      */
-    protected $_localizedUid;
+    protected int|null $_localizedUid = null;
 
 
     /**
      * Returns the _localizedUid
      *
-     * @return string $_localizedUid
+     * @return int|null $_localizedUid
      */
     public function get_localizedUid()
     {
