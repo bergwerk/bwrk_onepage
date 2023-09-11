@@ -17,6 +17,7 @@ declare(strict_types=1);
 
 namespace BERGWERK\BwrkOnepage\Controller;
 
+use Psr\Http\Message\ResponseInterface;
 use BERGWERK\BwrkOnepage\Domain\Model\Pages;
 use BERGWERK\BwrkOnepage\Domain\Repository\ContentRepository;
 use BERGWERK\BwrkOnepage\Domain\Repository\PagesRepository;
@@ -93,7 +94,7 @@ class OnepageController extends ActionController
     /**
      * @return string
      */
-    public function showAction(): string
+    public function showAction(): ResponseInterface
     {
         // @extensionScannerIgnoreLine
         $cObjData = $this->configurationManager->getContentObject()->data;
@@ -127,7 +128,7 @@ class OnepageController extends ActionController
             'object' => $object,
         ]);
 
-        return $this->view->render();
+        return $this->htmlResponse($this->view->render());
     }
 
     /**
