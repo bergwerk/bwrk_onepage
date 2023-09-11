@@ -42,5 +42,3 @@ $tmp_extpages_columns = [
     '--div--;BERGWERK Onepage,tx_bwrkonepage_sectionclass,tx_bwrkonepage_hidesectionmenu',
     '1'
 );
-
-$GLOBALS['TCA']['pages_language_overlay']['interface']['showRecordFieldList'] .= ',tx_bwrkonepage_sectionclass,tx_bwrkonepage_hidesectionmenu';
