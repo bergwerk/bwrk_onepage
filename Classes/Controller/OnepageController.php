@@ -17,6 +17,7 @@ declare(strict_types=1);
 
 namespace BERGWERK\BwrkOnepage\Controller;
 
+use Psr\Http\Message\ResponseInterface;
 use BERGWERK\BwrkOnepage\Domain\Model\Pages;
 use BERGWERK\BwrkOnepage\Domain\Repository\ContentRepository;
 use BERGWERK\BwrkOnepage\Domain\Repository\PagesRepository;
@@ -51,24 +52,9 @@ class OnepageController extends ActionController
      * @var PagesRepository
      */
     protected $pagesRepository;
-
-    /**
-     * Inject a content repository to enable DI
-     *
-     * @param ContentRepository $contentRepository
-     */
-    public function injectContentRepository(ContentRepository $contentRepository): void
+    public function __construct(\BERGWERK\BwrkOnepage\Domain\Repository\ContentRepository $contentRepository, \BERGWERK\BwrkOnepage\Domain\Repository\PagesRepository $pagesRepository)
     {
         $this->contentRepository = $contentRepository;
-    }
-
-    /**
-     * Inject a page repository to enable DI
-     *
-     * @param PagesRepository $pagesRepository
-     */
-    public function injectPagesRepository(PagesRepository $pagesRepository): void
-    {
         $this->pagesRepository = $pagesRepository;
     }
 
@@ -93,10 +79,10 @@ class OnepageController extends ActionController
     /**
      * @return string
      */
-    public function showAction(): string
+    public function showAction(): ResponseInterface
     {
         // @extensionScannerIgnoreLine
-        $cObjData = $this->configurationManager->getContentObject()->data;
+        $cObjData = $this->request->getAttribute('currentContentObject')->data;
         $pages = $this->getPages($cObjData['pid']);
         $object = [];
 
@@ -127,7 +113,7 @@ class OnepageController extends ActionController
             'object' => $object,
         ]);
 
-        return $this->view->render();
+        return $this->htmlResponse($this->view->render());
     }
 
     /**
@@ -137,7 +123,7 @@ class OnepageController extends ActionController
     private function getPages($pageUid): array
     {
         $pages = [];
-        if ($this->settings['pages']) {
+        if (array_key_exists('pages', $this->settings)) {
             $pages = explode(',', $this->settings['pages']);
         }
         $sorting = $this->settings['pagesOrdering'] ?: 'uid';

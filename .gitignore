@@ -1,5 +1,2 @@
-# Ignore some Stuff
-
-.idea
-.zip
-node_modules
+# Project/IDE stuff
+/.idea/
