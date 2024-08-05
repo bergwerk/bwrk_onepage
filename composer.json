@@ -4,11 +4,7 @@
   "description": "TYPO3 Onepage-Extension which allows you to use subpages as onepage layout.",
   "license": "GPL-2.0-or-later",
   "require": {
-    "typo3/cms-core": "^10.4 || ^11.5 || ^12.4"
-  },
-  "replace": {
-    "bergwerk/bwrk-onepage": "self.version",
-    "typo3-ter/bwrk-onepage": "self.version"
+    "typo3/cms-core": "^12.4"
   },
   "extra": {
     "typo3/cms": {
