@@ -30,15 +30,15 @@ class Content extends AbstractEntity
     /**
      * header
      * @var string
-     * @Extbase\Validate("NotEmpty")
      */
+    #[Extbase\Validate(['validator' => 'NotEmpty'])]
     protected $header;
 
     /**
      * sorting
      * @var int
-     * @Extbase\Validate("NotEmpty")
      */
+    #[Extbase\Validate(['validator' => 'NotEmpty'])]
     protected $sorting;
 
     /**

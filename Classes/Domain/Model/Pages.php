@@ -30,8 +30,8 @@ class Pages extends AbstractEntity
     /**
      * title
      * @var string
-     * @Extbase\Validate("NotEmpty")
      */
+    #[Extbase\Validate(['validator' => 'NotEmpty'])]
     protected $title;
 
     /**

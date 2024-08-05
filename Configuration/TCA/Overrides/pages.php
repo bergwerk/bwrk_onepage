@@ -1,4 +1,7 @@
 <?php
+
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+
 defined('TYPO3') or die();
 
 $tmp_extpages_columns = [
@@ -11,14 +14,14 @@ $tmp_extpages_columns = [
             'default' => 0,
             'items' => [
                 [
-                    'LLL:EXT:bwrk_onepage/Resources/Private/Language/locallang.xlf:bwrk_onepage.pageTS.sectionClassLabel',
-                    0
+                    'label' => 'LLL:EXT:bwrk_onepage/Resources/Private/Language/locallang.xlf:bwrk_onepage.pageTS.sectionClassLabel',
+                    'value' => 0
                 ],
-                ['Typ 1', 1],
-                ['Typ 2', 2],
-                ['Typ 3', 3],
-                ['Typ 4', 4],
-                ['Typ 5', 5],
+                ['label' => 'Typ 1', 'value' => 1],
+                ['label' => 'Typ 2', 'value' => 2],
+                ['label' => 'Typ 3', 'value' => 3],
+                ['label' => 'Typ 4', 'value' => 4],
+                ['label' => 'Typ 5', 'value' => 5],
             ],
         ],
 
@@ -30,14 +33,14 @@ $tmp_extpages_columns = [
             'type' => 'check',
             'default' => 0,
             'items' => [
-                ['LLL:EXT:bwrk_onepage/Resources/Private/Language/locallang.xlf:bwrk_onepage.pageTS.hideSectionMenuYes'],
+                ['label' => 'LLL:EXT:bwrk_onepage/Resources/Private/Language/locallang.xlf:bwrk_onepage.pageTS.hideSectionMenuYes'],
             ],
         ],
     ],
 ];
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('pages', $tmp_extpages_columns);
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
+ExtensionManagementUtility::addTCAcolumns('pages', $tmp_extpages_columns);
+ExtensionManagementUtility::addToAllTCAtypes(
     'pages',
     '--div--;BERGWERK Onepage,tx_bwrkonepage_sectionclass,tx_bwrkonepage_hidesectionmenu',
     '1'
