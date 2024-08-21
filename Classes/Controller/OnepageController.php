@@ -68,7 +68,7 @@ class OnepageController extends ActionController
      * @throws AspectNotFoundException
      * @api
      */
-    protected function initializeAction()
+    protected function initializeAction() :void
     {
         $this->extKey = GeneralUtility::camelCaseToLowerCaseUnderscored('BwrkOnepage');
         /** @var LanguageAspect $languageAspect */
@@ -93,15 +93,15 @@ class OnepageController extends ActionController
                     /** @var Pages $page */
                     $page = $this->pagesRepository->findByUid($pageId);
 
-                    $contentElements = $this->contentRepository->getContentByPid($page->getUid());
-
-                    $object[$i]['uid'] = $page->getUid();
-                    $object[$i]['pid'] = $pageId;
-                    $object[$i]['title'] = $page->getTitle();
-                    $object[$i]['sectionClass'] = $page->getTxBwrkonepageSectionclass();
-                    $object[$i]['hideSectionMenu'] = $page->getTxBwrkonepageHidesectionmenu();
-                    $object[$i]['contentElements'] = $contentElements;
-
+                    if (!empty($page)) {
+                        $contentElements = $this->contentRepository->getContentByPid($page->getUid());
+                        $object[$i]['uid'] = $page->getUid();
+                        $object[$i]['pid'] = $pageId;
+                        $object[$i]['title'] = $page->getTitle();
+                        $object[$i]['sectionClass'] = $page->getTxBwrkonepageSectionclass();
+                        $object[$i]['hideSectionMenu'] = $page->getTxBwrkonepageHidesectionmenu();
+                        $object[$i]['contentElements'] = $contentElements;
+                    }
                     $i++;
                 }
             }
@@ -123,15 +123,16 @@ class OnepageController extends ActionController
     private function getPages($pageUid): array
     {
         $pages = [];
-        if (array_key_exists('pages', $this->settings)) {
-            $pages = explode(',', $this->settings['pages']);
-        }
         $sorting = $this->settings['pagesOrdering'] ?: 'uid';
         if ((boolean)$this->settings['allSubPages']) {
             /** @var Pages[] $pagesArray */
             $pagesArray = $this->pagesRepository->findByPid($pageUid, $sorting);
             foreach ($pagesArray as $page) {
                 $pages[] = $page->getUid();
+            }
+        } else {
+            if (array_key_exists('pages', $this->settings)) {
+                $pages = explode(',', $this->settings['pages']);
             }
         }
         return $pages;
