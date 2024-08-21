@@ -4,7 +4,8 @@
   "description": "TYPO3 Onepage-Extension which allows you to use subpages as onepage layout.",
   "license": "GPL-2.0-or-later",
   "require": {
-    "typo3/cms-core": "^12.4 || ^13.2"
+    "php": "^8.2",
+    "typo3/cms-core": "^13.4"
   },
   "extra": {
     "typo3/cms": {
