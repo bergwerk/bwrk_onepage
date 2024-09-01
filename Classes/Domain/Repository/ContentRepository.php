@@ -18,7 +18,6 @@ declare(strict_types=1);
 namespace BERGWERK\BwrkOnepage\Domain\Repository;
 
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\QuerySettingsInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
@@ -40,7 +39,7 @@ class ContentRepository extends Repository
     public function initializeObject(): void
     {
         /** @var QuerySettingsInterface $querySettings */
-        $querySettings = GeneralUtility::makeInstance(QuerySettingsInterface::class);
+        $querySettings = $this->objectManager->get(QuerySettingsInterface::class);
         $querySettings->setRespectStoragePage(false);
         $this->setDefaultQuerySettings($querySettings);
     }
@@ -54,29 +53,24 @@ class ContentRepository extends Repository
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);
 
-        $constraint = $query->equals("pid", $pid);
+        $constraints = [
+            $query->equals("pid", $pid)
+        ];
 
         if (ExtensionManagementUtility::isLoaded('gridelements')) {
-            $constraint = $query->logicalAnd(
-                $query->equals("pid", $pid),
-                $query->equals('tx_gridelements_container', 0)
-            );
+            $constraints[] = $query->equals('tx_gridelements_container', 0);
         }
         if (ExtensionManagementUtility::isLoaded('container')) {
-            $constraint = $query->logicalAnd(
-                $query->equals("pid", $pid),
-                $query->equals('tx_container_parent', 0)
-            );
+            $constraints[] = $query->equals('tx_container_parent', 0);
         }
         if (ExtensionManagementUtility::isLoaded('flux')) {
-            $constraint = $query->logicalAnd(
-                $query->equals("pid", $pid),
-                $query->equals('tx_flux_parent', 0)
-            );
+            $constraints[] = $query->equals('tx_flux_parent', 0);
         }
 
         $query->matching(
-            $constraint
+            $query->logicalAnd(
+                $constraints
+            )
         );
 
         return $query->execute();

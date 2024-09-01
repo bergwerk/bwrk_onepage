@@ -17,7 +17,6 @@ declare(strict_types=1);
 
 namespace BERGWERK\BwrkOnepage\Controller;
 
-use Psr\Http\Message\ResponseInterface;
 use BERGWERK\BwrkOnepage\Domain\Model\Pages;
 use BERGWERK\BwrkOnepage\Domain\Repository\ContentRepository;
 use BERGWERK\BwrkOnepage\Domain\Repository\PagesRepository;
@@ -52,9 +51,24 @@ class OnepageController extends ActionController
      * @var PagesRepository
      */
     protected $pagesRepository;
-    public function __construct(\BERGWERK\BwrkOnepage\Domain\Repository\ContentRepository $contentRepository, \BERGWERK\BwrkOnepage\Domain\Repository\PagesRepository $pagesRepository)
+
+    /**
+     * Inject a content repository to enable DI
+     *
+     * @param ContentRepository $contentRepository
+     */
+    public function injectContentRepository(ContentRepository $contentRepository): void
     {
         $this->contentRepository = $contentRepository;
+    }
+
+    /**
+     * Inject a page repository to enable DI
+     *
+     * @param PagesRepository $pagesRepository
+     */
+    public function injectPagesRepository(PagesRepository $pagesRepository): void
+    {
         $this->pagesRepository = $pagesRepository;
     }
 
@@ -68,7 +82,7 @@ class OnepageController extends ActionController
      * @throws AspectNotFoundException
      * @api
      */
-    protected function initializeAction() :void
+    protected function initializeAction()
     {
         $this->extKey = GeneralUtility::camelCaseToLowerCaseUnderscored('BwrkOnepage');
         /** @var LanguageAspect $languageAspect */
@@ -79,10 +93,10 @@ class OnepageController extends ActionController
     /**
      * @return string
      */
-    public function showAction(): ResponseInterface
+    public function showAction(): string
     {
         // @extensionScannerIgnoreLine
-        $cObjData = $this->request->getAttribute('currentContentObject')->data;
+        $cObjData = $this->configurationManager->getContentObject()->data;
         $pages = $this->getPages($cObjData['pid']);
         $object = [];
 
@@ -104,6 +118,7 @@ class OnepageController extends ActionController
                     }
                     $i++;
                 }
+
             }
         }
 
@@ -113,7 +128,7 @@ class OnepageController extends ActionController
             'object' => $object,
         ]);
 
-        return $this->htmlResponse($this->view->render());
+        return $this->view->render();
     }
 
     /**

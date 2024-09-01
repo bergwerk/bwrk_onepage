@@ -20,6 +20,3 @@ See also the list of [contributors](https://github.com/bergwerk/bwrk_onepage/con
 ## Credits
 
 Big thanks to [Henrik Ziegenhain](https://github.com/h3nn3s), who agreed to take over the further development of the extension.
-
-Kudos to edv plan GmbH for sponsoring the v12 and v13 compatibility of this extension
-and [Marcel Marty](https://github.com/marcelmarty) for his great contribution to the v12 compatibility

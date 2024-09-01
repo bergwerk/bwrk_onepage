@@ -30,29 +30,29 @@ class Content extends AbstractEntity
     /**
      * header
      * @var string
+     * @Extbase\Validate("NotEmpty")
      */
-    #[Extbase\Validate(['validator' => 'NotEmpty'])]
     protected $header;
 
     /**
      * sorting
      * @var int
+     * @Extbase\Validate("NotEmpty")
      */
-    #[Extbase\Validate(['validator' => 'NotEmpty'])]
     protected $sorting;
 
     /**
-     * @var int<0, max>|null The uid of the localized record. Holds the uid of the record in default language (the translationOrigin).
+     * _localizedUid
      *
-     * @internal
+     * @var string
      */
-    protected int|null $_localizedUid = null;
+    protected $_localizedUid;
 
 
     /**
      * Returns the _localizedUid
      *
-     * @return int|null $_localizedUid
+     * @return string $_localizedUid
      */
     public function get_localizedUid()
     {
