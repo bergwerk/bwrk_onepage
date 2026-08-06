@@ -1,17 +1,17 @@
 <?php
+
+use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
+
 defined('TYPO3') or die();
 
-\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+// Registers the plugin as its own content type (CType "bwrkonepage_pi1") and attaches
+// the FlexForm directly, since list_type/subtypes plugins were removed in TYPO3 v14.
+ExtensionUtility::registerPlugin(
     'BwrkOnepage',
     'Pi1',
-    'BERGWERK Onepage Viewer'
-);
-
-// Flexform einbinden
-$pluginSignature = 'bwrkonepage_pi1';
-$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 'layout,select_key,pages';
-$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
-    $pluginSignature,
+    'BERGWERK Onepage Viewer',
+    null,
+    'plugins',
+    '',
     'FILE:EXT:bwrk_onepage/Configuration/FlexForms/Show.xml'
 );

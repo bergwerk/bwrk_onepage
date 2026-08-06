@@ -6,3 +6,5 @@ services:
 
   BERGWERK\BwrkOnepage\:
     resource: '../Classes/*'
+    exclude:
+      - '../Classes/Domain/Model/*'

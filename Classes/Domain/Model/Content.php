@@ -17,8 +17,8 @@ declare(strict_types=1);
 
 namespace BERGWERK\BwrkOnepage\Domain\Model;
 
+use TYPO3\CMS\Extbase\Attribute as Extbase;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
-use TYPO3\CMS\Extbase\Annotation as Extbase;
 
 /**
  * Class Content
@@ -31,14 +31,14 @@ class Content extends AbstractEntity
      * header
      * @var string
      */
-    #[Extbase\Validate(['validator' => 'NotEmpty'])]
+    #[Extbase\Validate(validator: 'NotEmpty')]
     protected $header;
 
     /**
      * sorting
      * @var int
      */
-    #[Extbase\Validate(['validator' => 'NotEmpty'])]
+    #[Extbase\Validate(validator: 'NotEmpty')]
     protected $sorting;
 
     /**

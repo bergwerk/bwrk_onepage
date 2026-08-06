@@ -17,8 +17,8 @@ declare(strict_types=1);
 
 namespace BERGWERK\BwrkOnepage\Domain\Model;
 
+use TYPO3\CMS\Extbase\Attribute as Extbase;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
-use TYPO3\CMS\Extbase\Annotation as Extbase;
 
 /**
  * Class Pages
@@ -31,7 +31,7 @@ class Pages extends AbstractEntity
      * title
      * @var string
      */
-    #[Extbase\Validate(['validator' => 'NotEmpty'])]
+    #[Extbase\Validate(validator: 'NotEmpty')]
     protected $title;
 
     /**
